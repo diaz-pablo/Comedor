@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f19cf8d43306d2e00d010e3a9572b79e",
+    "content-hash": "22e7515ddbfd41957f75b1c5c8f4bef3",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -993,6 +993,51 @@
                 "source": "https://github.com/jeroennoten/Laravel-AdminLTE/tree/v3.5.2"
             },
             "time": "2021-01-11T10:45:26+00:00"
+        },
+        {
+            "name": "laravel-lang/lang",
+            "version": "8.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Laravel-Lang/lang.git",
+                "reference": "edc3a76a759d229c28df36b08b3a943174709336"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Laravel-Lang/lang/zipball/edc3a76a759d229c28df36b08b3a943174709336",
+                "reference": "edc3a76a759d229c28df36b08b3a943174709336",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*"
+            },
+            "suggest": {
+                "andrey-helldar/laravel-lang-publisher": "Easy installation and update of translation files for your project",
+                "arcanedev/laravel-lang": "Translations manager and checker for Laravel 5",
+                "overtrue/laravel-lang": "Command to add languages in your project"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Laravel-Lang Team"
+                }
+            ],
+            "description": "Languages for Laravel",
+            "keywords": [
+                "lang",
+                "languages",
+                "laravel",
+                "lpm"
+            ],
+            "support": {
+                "issues": "https://github.com/Laravel-Lang/lang/issues",
+                "source": "https://github.com/Laravel-Lang/lang/tree/8.0.2"
+            },
+            "time": "2021-01-25T19:44:53+00:00"
         },
         {
             "name": "laravel/framework",

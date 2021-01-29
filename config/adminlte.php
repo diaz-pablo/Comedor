@@ -68,7 +68,7 @@ return [
     'usermenu_header_class' => 'bg-light',
     'usermenu_image' => true,
     'usermenu_desc' => true,
-    'usermenu_profile_url' => true,
+    'usermenu_profile_url' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -294,7 +294,7 @@ return [
             'url'        => '#',
         ],
         [
-            'text'        => 'Regresar a inicio',
+            'text'        => 'Regresar a Inicio',
             'route'       => 'home',
             'icon'        => 'fas fa-undo-alt',
         ],

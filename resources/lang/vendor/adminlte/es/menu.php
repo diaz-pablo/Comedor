@@ -6,7 +6,7 @@ return [
     'blog'                          => 'Blog',
     'pages'                         => 'Páginas',
     'account_settings'              => 'AJUSTES DE LA CUENTA',
-    'profile'                       => 'Perfil',
+    'profile'                       => 'Mi perfil',
     'change_password'               => 'Cambiar Contraseña',
     'multilevel'                    => 'Multi Nivel',
     'level_one'                     => 'Nivel 1',
