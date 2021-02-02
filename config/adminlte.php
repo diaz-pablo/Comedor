@@ -226,7 +226,7 @@ return [
         [
             'text'        => 'Panel',
             'route'       => 'admin.dashboard',
-            'icon'        => 'fas fa-tachometer-alt',
+            'icon'        => 'fas fa-fw fa-tachometer-alt',
         ],
         ['header' => 'account_settings'],
         [
@@ -296,7 +296,7 @@ return [
         [
             'text'        => 'Regresar a Inicio',
             'route'       => 'home',
-            'icon'        => 'fas fa-undo-alt',
+            'icon'        => 'fas fa-fw fa-home',
         ],
     ],
 

@@ -11,32 +11,24 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+    const SUSPENDED = 'suspended';
+    const PENDING = 'pending';
+    const ACTIVE = 'active';
+
     protected $fillable = [
+        'document_number',
+        'surname',
         'name',
         'email',
         'password',
+        'profile_photo_path',
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
