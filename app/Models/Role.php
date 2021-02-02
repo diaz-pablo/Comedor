@@ -19,4 +19,9 @@ class Role extends Model
         'display_name',
     ];
 
+    public function users()
+    {
+        return $this->hasMany(User::class);
+    }
+
 }

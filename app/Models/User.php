@@ -27,11 +27,17 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'role_id',
     ];
 
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
 
     public function adminlte_image()
     {
@@ -40,7 +46,7 @@ class User extends Authenticatable
 
     public function adminlte_desc()
     {
-        return 'Administrador';
+        return $this->role->display_name;
     }
 
     public function adminlte_profile_url()
