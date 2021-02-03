@@ -14,7 +14,6 @@ class UserController extends Controller
         if (request()->ajax()) {
             $students = User::select('id', 'document_number', 'surname', 'name', 'email')
                 ->where('role_id', Role::STUDENT_ID)
-                ->orderByDesc('created_at')
                 ->get();
 
             return datatables()

@@ -224,7 +224,7 @@ return [
 
     'menu' => [
         [
-            'text'        => 'Panel',
+            'text'        => 'Panel de administración',
             'route'       => 'admin.dashboard',
             'icon'        => 'fas fa-fw fa-tachometer-alt',
         ],
