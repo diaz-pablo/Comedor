@@ -184,5 +184,8 @@ return [
         'title'                 => 'título',
         'username'              => 'usuario',
         'year'                  => 'año',
+        'document_number'       => 'número de documento',
+        'surname'               => 'apellido',
+        'status'                => 'estado',
     ],
 ];

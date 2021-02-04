@@ -31,6 +31,6 @@ class UserSeeder extends Seeder
             'deleted_at' => null,
         ]);
 
-        User::factory(998)->create();
+        User::factory(498)->create();
     }
 }

@@ -236,13 +236,11 @@ return [
                     'text' => 'Lista de usuarios',
                     'route'   => 'admin.users.index',
                     'icon' => 'fas fa-fw fa-users',
-                    'shift'   => 'ml-4',
                 ],
                 [
                     'text' => 'Crear usuario',
                     'route'   => 'admin.users.create',
                     'icon' => 'fas fa-fw fa-user-plus',
-                    'shift'   => 'ml-4',
                 ],
             ],
         ],
@@ -386,6 +384,21 @@ return [
                     'type' => 'js',
                     'asset' => false,
                     'location' => '//cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js',
+                ],
+            ],
+        ],
+        'BsStepper' => [
+            'active' => false,
+            'files' => [
+                [
+                    'type' => 'css',
+                    'asset' => false,
+                    'location' => '//cdn.jsdelivr.net/npm/bs-stepper/dist/css/bs-stepper.min.css',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => false,
+                    'location' => '//cdn.jsdelivr.net/npm/bs-stepper/dist/js/bs-stepper.min.js',
                 ],
             ],
         ],

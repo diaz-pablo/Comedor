@@ -10,8 +10,16 @@
 
 @section('content')
     <div class="row">
+        @if (session()->has('alert'))
+            @include('admin.partials.alert', [
+                'alert_color' => session('alert')[0],
+                'alert_title' => session('alert')[1],
+                'alert_message' => session('alert')[2]
+            ])
+        @endif
+
         <div class="col-12">
-            <div class="card">
+            <div class="card card-outline card-primary">
                 <div class="card-body table-responsive">
                     <table id="users-table" class="table table-striped table-hover">
                         <thead>
