@@ -230,19 +230,8 @@ return [
         ],
         [
             'text'    => 'Usuarios',
+            'route'   => 'admin.users.index',
             'icon'    => 'fas fa-fw fa-users-cog',
-            'submenu' => [
-                [
-                    'text' => 'Lista de usuarios',
-                    'route'   => 'admin.users.index',
-                    'icon' => 'fas fa-fw fa-users',
-                ],
-                [
-                    'text' => 'Crear usuario',
-                    'route'   => 'admin.users.create',
-                    'icon' => 'fas fa-fw fa-user-plus',
-                ],
-            ],
         ],
         ['header' => 'labels'],
         [

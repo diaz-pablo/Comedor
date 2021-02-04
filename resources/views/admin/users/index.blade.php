@@ -5,7 +5,13 @@
 @section('plugins.Datatables', true)
 
 @section('content_header')
-    <h1>Lista de usuarios</h1>
+    <div class="d-flex justify-content-between align-items-center">
+        <h1>Lista de usuarios</h1>
+
+        <a href="{{ route('admin.users.create') }}" class="btn btn-success">
+            <i class="fas fa-user-plus"></i> Crear usuario
+        </a>
+    </div>
 @stop
 
 @section('content')

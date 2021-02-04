@@ -5,7 +5,13 @@
 @section('plugins.BsStepper', true)
 
 @section('content_header')
-    <h1>Crear usuario</h1>
+    <div class="d-flex justify-content-between align-items-center">
+        <h1>Crear usuario</h1>
+
+        <a href="{{ route('admin.users.index') }}" class="btn btn-outline-secondary border">
+            <i class="fas fa-arrow-left"></i> Cancelar
+        </a>
+    </div>
 @stop
 
 @section('content')
@@ -110,7 +116,7 @@
                                             id="next"
                                             class="btn btn-outline-secondary btn-block border"
                                         >
-                                            Siguiente <i class="fas fa-arrow-right"></i>
+                                            Ir al Paso 2 <i class="fas fa-arrow-right"></i>
                                         </button>
                                     </div>
                                 </div>
@@ -215,7 +221,7 @@
                                             id="previous"
                                             class="btn btn-outline-secondary border btn-block mb-1"
                                         >
-                                            <i class="fas fa-arrow-left"></i> Regresar
+                                            <i class="fas fa-arrow-left"></i> Regresar al Paso 1
                                         </button>
                                     </div>
 
