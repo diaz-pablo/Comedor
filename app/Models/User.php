@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
@@ -18,25 +19,30 @@ class User extends Authenticatable
     const ACTIVE = 'active';
 
     protected $fillable = [
-        'document_number',
-        'surname',
-        'name',
-        'email',
-        'password',
-        'profile_photo_path',
-        'status',
+        'document_number', 'surname', 'name', 'email', 'password', 'profile_photo_path', 'status',
     ];
 
     protected $hidden = [
-        'password',
-        'remember_token',
-        'role_id',
-        'status',
+        'password', 'remember_token', 'role_id', 'status',
     ];
 
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        self::creating(function($user) {
+            if (! app()->runningInConsole()) {
+                $password = Str::random(12);
+                $user->password = $password;
+
+                //TODO: Enviar correo con usuario y contraseña. ¿Con observer y policies?.
+            }
+        });
+    }
 
     public function role()
     {
@@ -48,6 +54,11 @@ class User extends Authenticatable
         $this->attributes['password'] = Hash::make($password);
     }
 
+    public function scopeStudents($query)
+    {
+        return $query->where('role_id', Role::STUDENT_ID);
+    }
+
     public function adminlte_image()
     {
         return 'https://picsum.photos/300/300';
@@ -55,7 +66,7 @@ class User extends Authenticatable
 
     public function adminlte_desc()
     {
-        return $this->role->display_name;
+        return $this->email;
     }
 
     public function adminlte_profile_url()

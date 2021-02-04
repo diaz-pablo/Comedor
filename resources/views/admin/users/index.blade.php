@@ -41,8 +41,8 @@
 
 @section('js')
     <script>
-        $(document).ready(function() {
-            $("#users-table").DataTable({
+        jQuery(document).ready(function() {
+            jQuery("#users-table").DataTable({
                 serverSide: true,
                 ajax: "{{ route('admin.users.index') }}",
                 responsive: true,

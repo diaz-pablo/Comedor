@@ -15,8 +15,7 @@ class Role extends Model
     const STUDENT_ID = 2;
 
     protected $fillable = [
-        'name',
-        'display_name',
+        'name', 'display_name',
     ];
 
     public function users()

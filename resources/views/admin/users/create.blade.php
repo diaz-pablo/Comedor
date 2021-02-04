@@ -239,13 +239,13 @@
 
 @section('js')
     <script>
-        const stepper = new Stepper($("#stepper")[0]);
+        const stepper = new Stepper(jQuery("#stepper")[0]);
 
-        $("#next").on("click", function (e){
+        jQuery("#next").on("click", function (e){
             stepper.next();
         });
 
-        $("#previous").on("click", function (e){
+        jQuery("#previous").on("click", function (e){
             e.preventDefault();
             stepper.previous();
         });
