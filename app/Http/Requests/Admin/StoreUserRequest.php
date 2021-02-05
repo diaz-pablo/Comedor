@@ -39,7 +39,12 @@ class StoreUserRequest extends FormRequest
             }
             case 'PUT': {
                 return [
-
+                    'document_number' => 'bail|required|integer|digits:8|unique:users,document_number,' . $this->route()->user->id,
+                    'surname' => 'bail|required|string|max:255',
+                    'name' => 'bail|required|string|max:255',
+                    'email' => 'bail|required|email|unique:users,email,' . $this->route()->user->id,
+                    'generate_new_password' => 'bail|nullable|string',
+                    'status' => 'bail|required',
                 ];
             }
         }

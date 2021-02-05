@@ -12,7 +12,7 @@
             <i class="fas fa-user-plus"></i> Crear usuario
         </a>
     </div>
-@stop
+@endsection
 
 @section('content')
     <div class="row">
@@ -43,7 +43,7 @@
             </div>
         </div>
     </div>
-@stop
+@endsection
 
 @section('js')
     <script>
@@ -70,5 +70,5 @@
             });
         });
     </script>
-@stop
+@endsection
 

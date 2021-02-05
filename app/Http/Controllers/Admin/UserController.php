@@ -24,16 +24,14 @@ class UserController extends Controller
 
     public function create()
     {
-        return view('admin.users.create', [
-            'user' => new User()
-        ]);
+        return view('admin.users.create', ['user' => new User]);
     }
 
     public function store(StoreUserRequest $request)
     {
             User::create($request->all());
 
-            session()->flash('alert', ['success', '¡Hurra!', 'El usuario ha sido creado exitosamente.']);
+            session()->flash('alert', ['success', '¡Hurra! Todo salió bien, ', 'el usuario ha sido creado exitosamente.']);
             return redirect()->route('admin.users.index');
     }
 
@@ -44,13 +42,13 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
-        //
+        return view('admin.users.edit', compact('user'));
     }
 
 
-    public function update(Request $request, User $user)
+    public function update(StoreUserRequest $request, User $user)
     {
-        //
+        //return $request->all();
     }
 
     public function destroy(User $user)
