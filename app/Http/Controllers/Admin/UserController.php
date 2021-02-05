@@ -33,7 +33,7 @@ class UserController extends Controller
     {
             User::create($request->all());
 
-            session()->flash('alert', ['success', '¡Oh yeah!', 'El usuario ha sido creado exitosamente.']);
+            session()->flash('alert', ['success', '¡Hurra!', 'El usuario ha sido creado exitosamente.']);
             return redirect()->route('admin.users.index');
     }
 

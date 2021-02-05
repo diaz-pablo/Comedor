@@ -8,7 +8,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
@@ -29,20 +28,6 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-    protected static function boot()
-    {
-        parent::boot();
-
-        self::creating(function($user) {
-            if (! app()->runningInConsole()) {
-                $password = Str::random(12);
-                $user->password = $password;
-
-                //TODO: Enviar correo con usuario y contraseña. ¿Con observer y policies?.
-            }
-        });
-    }
 
     public function role()
     {
