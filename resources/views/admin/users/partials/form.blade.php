@@ -126,6 +126,18 @@
                     </div>
                 </div>
 
+                @if ($user->id)
+                    <div class="form-group row">
+                        <div class="col-12 col-md-4"></div>
+
+                        <div class="col-12 col-md-8">
+                            <p class="text-secondary text-sm mb-0">
+                                Si actualiza el correo electrónico, el usuario deberá verificar el mismo.
+                            </p>
+                        </div>
+                    </div>
+                @endif
+
                 <div class="form-group row">
                     <div class="col-12 col-md-4"></div>
 

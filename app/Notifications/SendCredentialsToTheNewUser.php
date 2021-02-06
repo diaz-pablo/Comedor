@@ -26,7 +26,7 @@ class SendCredentialsToTheNewUser extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->subject('Creación de usuario en ' . env('APP_NAME') . '.')
+                    ->subject('Creación de usuario.')
                     ->greeting('Hola, ' . $notifiable->name . ' ' . $notifiable->surname . '.')
                     ->line('¡Bienvenido a ' . env('APP_NAME') . '!')
                     ->line('Tus credenciales para acceder son:')

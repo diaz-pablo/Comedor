@@ -18,7 +18,6 @@ class UserObserver
     {
         if (! \App::runningInConsole()) {
             $password = Str::random(12);
-
             $user->password = $password;
 
             $user->notify(new SendCredentialsToTheNewUser($password));
@@ -29,10 +28,15 @@ class UserObserver
     {
         if (request()->has('generate_new_password') && ! \App::runningInConsole()) {
             $newPassword = Str::random(12);
-
             $user->password = $newPassword;
 
             $user->notify(new SendPasswordToUpdateUser($newPassword));
+        }
+
+        if($user->isDirty('email'))  {
+            $user->email_verified_at = null;
+
+            $user->sendEmailVerificationNotification();
         }
     }
 

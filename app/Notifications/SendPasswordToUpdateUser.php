@@ -26,7 +26,7 @@ class SendPasswordToUpdateUser extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->subject('Actualización de contraseña en ' . env('APP_NAME') . '.')
+            ->subject('Actualización de contraseña.')
             ->greeting('Hola, ' . $notifiable->name . ' ' . $notifiable->surname . '.')
             ->line('Se actualizó tu contraseña exitosamente.')
             ->line('Tus credenciales para acceder son:')
