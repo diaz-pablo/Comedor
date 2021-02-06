@@ -55,6 +55,12 @@ class UserController extends Controller
 
     public function destroy(User $user)
     {
-        //
+        // TODO: Eliminar su imágen si es que no tiene la imágen por defecto.
+        // TODO: Seteearle en la DB la URL de la imágen por defecto.
+        // TODO: Hacer esto en el observer.
+        $user->delete();
+
+        session()->flash('alert', ['success', '¡Hurra! Todo salió bien, ', 'el usuario ha sido eliminado exitosamente.']);
+        return redirect()->route('admin.users.index');
     }
 }

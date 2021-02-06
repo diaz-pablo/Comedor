@@ -42,31 +42,50 @@
                 </div>
             </div>
         </div>
+
+        @include('admin.users.partials.modal')
     </div>
 @endsection
 
 @section('js')
     <script>
         jQuery(document).ready(function() {
-            jQuery("#users-table").DataTable({
+            jQuery('#users-table').DataTable({
                 serverSide: true,
                 ajax: "{{ route('admin.users.index') }}",
                 responsive: true,
                 autoWidth: false,
                 columns: [
-                    {data: "id"},
-                    {data: "document_number"},
-                    {data: "surname"},
-                    {data: "name"},
-                    {data: "email"},
-                    {data: "actions", "orderable": false}
+                    {data: 'id'},
+                    {data: 'document_number'},
+                    {data: 'surname'},
+                    {data: 'name'},
+                    {data: 'email'},
+                    {data: 'actions', 'orderable': false}
                 ],
                 order: [
-                    [0, "desc"]
+                    [0, 'desc']
                 ],
                 language: {
-                    "url" : "//cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json"
+                    'url' : '//cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json'
                 }
+            });
+
+            jQuery('#delete-user').on('show.bs.modal', function (e) {
+                const modal = jQuery(this);
+                const button = jQuery(e.relatedTarget);
+
+                const id = button.data('id');
+                const documentNumber = button.data('document_number');
+                const surname = button.data('surname');
+                const name = button.data('name');
+                const email = button.data('email');
+
+                modal.find('.modal-title').text("# " + id);
+                modal.find('.modal-body #full-name').text(`${name}  ${surname}`);
+                modal.find('.modal-body #document-number').text(documentNumber);
+                modal.find('.modal-body #email').text(email);
+                modal.find('.modal-footer #form-delete-user').attr('action', `{{ env('APP_URL') }}/admin/users/${id}`);
             });
         });
     </script>

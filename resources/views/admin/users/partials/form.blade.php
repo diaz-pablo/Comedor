@@ -132,7 +132,7 @@
 
                         <div class="col-12 col-md-8">
                             <p class="text-secondary text-sm mb-0">
-                                Si actualiza el correo electrónico, el usuario deberá verificar el mismo.
+                                Si actualizas el correo electrónico, el usuario deberá verificar el mismo.
                             </p>
                         </div>
                     </div>
@@ -257,13 +257,13 @@
 
 @section('js')
     <script>
-        const stepper = new Stepper(jQuery("#stepper")[0]);
+        const stepper = new Stepper(jQuery('#stepper')[0]);
 
-        jQuery("#next").on("click", function (e){
+        jQuery('#next').on('click', function (e){
             stepper.next();
         });
 
-        jQuery("#previous").on("click", function (e){
+        jQuery('#previous').on('click', function (e){
             e.preventDefault();
             stepper.previous();
         });

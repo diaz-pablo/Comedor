@@ -26,17 +26,18 @@ class UserObserver
 
     public function updating(User $user)
     {
+
+        if($user->isDirty('email') && ! \App::runningInConsole())  {
+            $user->email_verified_at = null;
+
+            $user->sendEmailVerificationNotification();
+        }
+
         if (request()->has('generate_new_password') && ! \App::runningInConsole()) {
             $newPassword = Str::random(12);
             $user->password = $newPassword;
 
             $user->notify(new SendPasswordToUpdateUser($newPassword));
-        }
-
-        if($user->isDirty('email'))  {
-            $user->email_verified_at = null;
-
-            $user->sendEmailVerificationNotification();
         }
     }
 

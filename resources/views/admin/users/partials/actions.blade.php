@@ -1,30 +1,33 @@
-<a href="{{ route('admin.users.show', $id) }}"
-   class="btn btn-sm text-info"
-   data-toggle="tooltip"
-   data-placement="bottom"
-   title="Ver más">
-    <i class="fas fa-eye"></i>
+<a
+    href="{{ route('admin.users.show', $id) }}"
+    class="btn btn-sm text-info"
+>
+    <i class="fas fa-eye"></i> Ver más
 </a>
 
 <span class="text-black-50">|</span>
 
-<a href="{{ route('admin.users.edit', $id) }}"
-   class="btn btn-sm text-warning"
-   data-toggle="tooltip"
-   data-placement="bottom"
-   title="Editar">
-    <i class="fas fa-edit"></i>
+<a
+    href="{{ route('admin.users.edit', $id) }}"
+    class="btn btn-sm text-warning"
+>
+    <i class="fas fa-edit"></i> Editar
 </a>
 
 <span class="text-black-50">|</span>
 
-<form method="POST" action="{{ route('admin.users.destroy', $id) }}" class="d-inline">
-    @csrf @method('DELETE')
-    <button type="submit"
-            class="btn btn-sm text-danger"
-            data-toggle="tooltip"
-            data-placement="bottom"
-            title="Eliminar">
-        <i class="fas fa-trash"></i>
-    </button>
-</form>
+<button
+    type="button"
+    class="btn btn-sm text-danger"
+    data-toggle="modal"
+    data-target="#delete-user"
+    data-id="{{ $id }}"
+    data-document_number="{{ $document_number }}"
+    data-surname="{{ $surname }}"
+    data-name="{{ $name }}"
+    data-email="{{ $email }}"
+>
+    <i class="fas fa-trash"></i>
+</button>
+
+
