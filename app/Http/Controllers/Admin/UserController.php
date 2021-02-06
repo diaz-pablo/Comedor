@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\Admin\StoreUserRequest;
 use App\Models\User;
 use App\Http\Controllers\Controller;
-use App\Notifications\SendPasswordToUpdateUser;
-use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -49,17 +47,7 @@ class UserController extends Controller
 
     public function update(StoreUserRequest $request, User $user)
     {
-        if ($request->has('generate_new_password')) {
-            $newPassword = Str::random(12);
-            $request->merge(['password' => $newPassword]);
-
-        }
-
         $user->update($request->all());
-
-        if ($request->has('generate_new_password')) {
-            $user->notify(new SendPasswordToUpdateUser($newPassword));
-        }
 
         session()->flash('alert', ['success', '¡Hurra! Todo salió bien, ', 'el usuario ha sido actualizado exitosamente.']);
         return redirect()->route('admin.users.index');
