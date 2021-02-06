@@ -24,15 +24,9 @@ class UserObserver
         }
     }
 
-    /**
-     * Handle the User "updated" event.
-     *
-     * @param  \App\Models\User  $user
-     * @return void
-     */
-    public function updated(User $user)
+    public function updating(User $user)
     {
-        //
+        return $user;
     }
 
     /**

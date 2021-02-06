@@ -137,7 +137,6 @@
                                     id="generate_new_password"
                                     name="generate_new_password"
                                     class="custom-control-input"
-                                    value="{{ old('generate_new_password') }}"
                                 >
 
                                 <label for="generate_new_password" class="custom-control-label text-secondary d-flex align-items-center">

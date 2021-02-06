@@ -43,7 +43,6 @@ class StoreUserRequest extends FormRequest
                     'surname' => 'bail|required|string|max:255',
                     'name' => 'bail|required|string|max:255',
                     'email' => 'bail|required|email|unique:users,email,' . $this->route()->user->id,
-                    'generate_new_password' => 'bail|nullable|string',
                     'status' => 'bail|required',
                 ];
             }
