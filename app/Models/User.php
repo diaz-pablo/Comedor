@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable
 {
@@ -34,6 +36,21 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class);
     }
 
+    public function getProfilePhotoPathAttribute($profilePhotoPath)
+    {
+        return Storage::url($profilePhotoPath);
+    }
+
+    public function getCreatedAtAttribute($createdAt)
+    {
+        return Carbon::parse($createdAt)->translatedFormat('d F Y');
+    }
+
+    public function getUpdatedAtAttribute($updatedAt)
+    {
+        return Carbon::parse($updatedAt)->translatedFormat('d F Y');
+    }
+
     public function setPasswordAttribute($password)
     {
         $this->attributes['password'] = Hash::make($password);
@@ -46,7 +63,7 @@ class User extends Authenticatable
 
     public function adminlte_image()
     {
-        return 'https://picsum.photos/300/300';
+        return $this->profile_photo_path;
     }
 
     public function adminlte_desc()

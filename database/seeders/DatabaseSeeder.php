@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Storage;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,6 +14,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        Storage::deleteDirectory('users');
+        Storage::deleteDirectory('menus');
+
+        Storage::makeDirectory('users');
+        Storage::makeDirectory('menus');
+
         $this->call([
             RoleSeeder::class,
             UserSeeder::class,

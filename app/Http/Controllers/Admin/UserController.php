@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\Admin\StoreUserRequest;
 use App\Models\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -28,15 +29,15 @@ class UserController extends Controller
 
     public function store(StoreUserRequest $request)
     {
-            User::create($request->all());
+        User::create($request->all());
 
-            session()->flash('alert', ['success', '¡Hurra! Todo salió bien, ', 'el usuario ha sido creado exitosamente.']);
-            return redirect()->route('admin.users.index');
+        session()->flash('alert', ['success', '¡Hurra! Todo salió bien, ', 'el usuario ha sido creado exitosamente.']);
+        return redirect()->route('admin.users.index');
     }
 
     public function show(User $user)
     {
-        //
+        return view('admin.users.show', compact('user'));
     }
 
     public function edit(User $user)
