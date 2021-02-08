@@ -24,7 +24,7 @@ class User extends Authenticatable
     ];
 
     protected $hidden = [
-        'password', 'remember_token', 'role_id', 'status',
+        'password', 'remember_token', 'role_id',
     ];
 
     protected $casts = [

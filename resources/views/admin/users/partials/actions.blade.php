@@ -27,7 +27,7 @@
     data-name="{{ $name }}"
     data-email="{{ $email }}"
 >
-    <i class="fas fa-trash"></i>
+    <i class="fas fa-trash"></i> Eliminar
 </button>
 
 

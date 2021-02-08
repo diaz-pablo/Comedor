@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\Admin\StoreUserRequest;
 use App\Models\User;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -14,8 +13,9 @@ class UserController extends Controller
         if (request()->ajax()) {
             return datatables()
                     ->of(User::students()->get())
+                    ->addColumn('status', 'admin.users.partials.status')
                     ->addColumn('actions', 'admin.users.partials.actions')
-                    ->rawColumns(['actions'])
+                    ->rawColumns(['status', 'actions'])
                     ->toJson();
         }
 

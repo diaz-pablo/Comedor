@@ -15,8 +15,8 @@ return [
     */
 
     'title' => '',
-    'title_prefix' => 'Comedor | ',
-    'title_postfix' => '',
+    'title_prefix' => '',
+    'title_postfix' => ' | Comedor',
 
     /*
     |--------------------------------------------------------------------------

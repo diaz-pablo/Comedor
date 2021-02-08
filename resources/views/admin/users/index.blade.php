@@ -34,7 +34,7 @@
                                 <th scope="col">Documento</th>
                                 <th scope="col">Apellido</th>
                                 <th scope="col">Nombre</th>
-                                <th scope="col">Correo electrónico</th>
+                                <th scope="col">Estado actual</th>
                                 <th scope="col">Acciones</th>
                             </tr>
                         </thead>
@@ -60,7 +60,7 @@
                     {data: 'document_number'},
                     {data: 'surname'},
                     {data: 'name'},
-                    {data: 'email'},
+                    {data: 'status', className: 'text-center'},
                     {data: 'actions', 'orderable': false}
                 ],
                 order: [
@@ -68,7 +68,7 @@
                 ],
                 language: {
                     'url' : '//cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json'
-                }
+                },
             });
 
             jQuery('#delete-user').on('show.bs.modal', function (e) {
