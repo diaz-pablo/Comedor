@@ -1,11 +1,11 @@
 <form
     method="POST"
-    action="{{ $user->id ? route('admin.users.update', $user) : route('admin.users.store') }}"
+    action="{{ $student->id ? route('admin.students.update', $student) : route('admin.students.store') }}"
     novalidate
 >
     @csrf
 
-    @if ($user->id)
+    @if ($student->id)
         @method('PUT')
     @endif
 
@@ -45,7 +45,7 @@
                             name="document_number"
                             class="form-control @error('document_number') is-invalid @enderror"
                             placeholder="Ingresa el número de documento."
-                            value="{{ old('document_number') ?: $user->document_number }}"
+                            value="{{ old('document_number', $student->document_number) }}"
                             autofocus
                         >
 
@@ -65,7 +65,7 @@
                             name="surname"
                             class="form-control @error('surname') is-invalid @enderror"
                             placeholder="Ingresa el apellido."
-                            value="{{ old('surname') ?: $user->surname }}"
+                            value="{{ old('surname', optional($user)->surname) }}"
                         >
 
                         @include('admin.partials.validation', ['field_name' => 'surname'])
@@ -84,7 +84,7 @@
                             name="name"
                             class="form-control @error('name') is-invalid @enderror"
                             placeholder="Ingresa el nombre."
-                            value="{{ old('name') ?: $user->name }}"
+                            value="{{ old('name', optional($user)->name) }}"
                         >
 
                         @include('admin.partials.validation', ['field_name' => 'name'])
@@ -119,14 +119,14 @@
                             name="email"
                             class="form-control @error('email') is-invalid @enderror"
                             placeholder="Ingresa el correo electrónico."
-                            value="{{ old('email') ?: $user->email }}"
+                            value="{{ old('email', optional($user)->email) }}"
                         >
 
                         @include('admin.partials.validation', ['field_name' => 'email'])
                     </div>
                 </div>
 
-                @if ($user->id)
+                @if ($student->id)
                     <div class="form-group row">
                         <div class="col-12 col-md-4"></div>
 
@@ -142,7 +142,7 @@
                     <div class="col-12 col-md-4"></div>
 
                     <div class="col-12 col-md-8">
-                        @if ($user->id)
+                        @if ($student->id)
                             <div class="custom-control custom-checkbox">
                                 <input
                                     type="checkbox"
@@ -172,9 +172,9 @@
                                 type="radio"
                                 id="suspended"
                                 name="status"
-                                value="{{ App\Models\User::SUSPENDED }}"
+                                value="{{ App\Models\Student::SUSPENDED }}"
                                 class="custom-control-input @error('status') is-invalid @enderror"
-                                {{ $user->status === App\Models\User::SUSPENDED || old('status') === App\Models\User::SUSPENDED ? "checked" : "" }}
+                                {{ $student->status === App\Models\Student::SUSPENDED || old('status') === App\Models\Student::SUSPENDED ? "checked" : "" }}
                             >
 
                             <label
@@ -189,10 +189,10 @@
                             <input
                                 type="radio"
                                 id="pending"
-                                value="{{ App\Models\User::PENDING }}"
+                                value="{{ App\Models\Student::PENDING }}"
                                 name="status"
                                 class="custom-control-input @error('status') is-invalid @enderror"
-                                {{ $user->status === App\Models\User::PENDING || old('status') === App\Models\User::PENDING ? "checked" : "" }}
+                                {{ $student->status === App\Models\Student::PENDING || old('status') === App\Models\Student::PENDING ? "checked" : "" }}
                             >
 
                             <label
@@ -207,10 +207,10 @@
                             <input
                                 type="radio"
                                 id="active"
-                                value="{{ App\Models\User::ACTIVE }}"
+                                value="{{ App\Models\Student::ACTIVE }}"
                                 name="status"
                                 class="custom-control-input @error('status') is-invalid @enderror"
-                                {{ $user->status === App\Models\User::ACTIVE || old('status') === App\Models\User::ACTIVE ? "checked" : "" }}
+                                {{ $student->status === App\Models\Student::ACTIVE || old('status') === App\Models\Student::ACTIVE ? "checked" : "" }}
                             >
 
                             <label
@@ -239,12 +239,12 @@
                     <div class="col-md-4">
                         <button
                             type="submit"
-                            class="btn {{ $user->id ? 'btn-warning' : 'btn-success' }} btn-block"
+                            class="btn {{ $student->id ? 'btn-warning' : 'btn-success' }} btn-block"
                         >
-                            @if ($user->id)
-                                <i class="fas fa-edit"></i> Editar usuario
+                            @if ($student->id)
+                                <i class="fas fa-edit"></i> Editar estudiante
                             @else
-                                <i class="fas fa-plus"></i> Crear usuario
+                                <i class="fas fa-plus"></i> Crear estudiante
                             @endif
                         </button>
                     </div>

@@ -229,8 +229,8 @@ return [
             'icon'        => 'fas fa-fw fa-tachometer-alt',
         ],
         [
-            'text'    => 'Usuarios',
-            'route'   => 'admin.users.index',
+            'text'    => 'Estudiantes',
+            'route'   => 'admin.students.index',
             'icon'    => 'fas fa-fw fa-users',
         ],
         ['header' => 'labels'],

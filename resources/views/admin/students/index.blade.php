@@ -1,15 +1,15 @@
 @extends('adminlte::page')
 
-@section('title', 'Lista de usuarios')
+@section('title', 'Lista de estudiantes')
 
 @section('plugins.Datatables', true)
 
 @section('content_header')
     <div class="d-flex justify-content-between align-items-center">
-        <h1>Lista de usuarios</h1>
+        <h1>Lista de estudiantes</h1>
 
-        <a href="{{ route('admin.users.create') }}" class="btn btn-success">
-            <i class="fas fa-plus"></i> Crear usuario
+        <a href="{{ route('admin.students.create') }}" class="btn btn-success">
+            <i class="fas fa-plus"></i> Crear
         </a>
     </div>
 @endsection
@@ -27,7 +27,7 @@
         <div class="col-12">
             <div class="card card-outline card-primary">
                 <div class="card-body table-responsive">
-                    <table id="users-table" class="table table-striped table-hover">
+                    <table id="students-table" class="table table-striped table-hover">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
@@ -43,25 +43,26 @@
             </div>
         </div>
 
-        @include('admin.users.partials.modal')
+        @include('admin.students.partials.modal')
     </div>
 @endsection
 
 @section('js')
     <script>
         jQuery(document).ready(function() {
-            jQuery('#users-table').DataTable({
+            jQuery('#students-table').DataTable({
                 serverSide: true,
-                ajax: "{{ route('admin.users.index') }}",
+                ajax: "{{ route('admin.students.index') }}",
+                processing: true,
                 responsive: true,
                 autoWidth: false,
                 columns: [
                     {data: 'id'},
                     {data: 'document_number'},
-                    {data: 'surname'},
-                    {data: 'name'},
+                    {data: 'user.surname'},
+                    {data: 'user.name'},
                     {data: 'status', className: 'text-md-center'},
-                    {data: 'actions', 'orderable': false}
+                    {data: 'actions', className: 'text-md-center', orderable: false}
                 ],
                 order: [
                     [0, 'desc']
@@ -71,21 +72,21 @@
                 },
             });
 
-            jQuery('#delete-user').on('show.bs.modal', function (e) {
+            jQuery('#delete-student').on('show.bs.modal', function (e) {
                 const modal = jQuery(this);
                 const button = jQuery(e.relatedTarget);
 
                 const id = button.data('id');
-                const documentNumber = button.data('document_number');
+                const documentNumber = button.data('document-number');
                 const surname = button.data('surname');
                 const name = button.data('name');
                 const email = button.data('email');
 
-                modal.find('.modal-title').text("# " + id);
+                modal.find('.modal-title').text("Estudiante #" + id);
                 modal.find('.modal-body #full-name').text(`${name}  ${surname}`);
                 modal.find('.modal-body #document-number').text(documentNumber);
                 modal.find('.modal-body #email').text(email);
-                modal.find('.modal-footer #form-delete-user').attr('action', `{{ env('APP_URL') }}/admin/users/${id}`);
+                modal.find('.modal-footer #form-delete-student').attr('action', `{{ env('APP_URL') }}/admin/students/${id}`);
             });
         });
     </script>

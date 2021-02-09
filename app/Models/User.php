@@ -13,14 +13,10 @@ use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable, SoftDeletes;
-
-    const SUSPENDED = 'suspended';
-    const PENDING = 'pending';
-    const ACTIVE = 'active';
+    use HasFactory, Notifiable;
 
     protected $fillable = [
-        'document_number', 'surname', 'name', 'email', 'password', 'profile_photo_path', 'status',
+        'surname', 'name', 'email', 'password', 'profile_photo_path',
     ];
 
     protected $hidden = [
@@ -36,6 +32,11 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class);
     }
 
+    public function student()
+    {
+        return $this->hasOne(Student::class);
+    }
+
     public function hasRole(array $roles)
     {
         return collect($roles)->intersect($this->role->name)->count();
@@ -48,22 +49,17 @@ class User extends Authenticatable
 
     public function getCreatedAtAttribute($createdAt)
     {
-        return Carbon::parse($createdAt)->translatedFormat('d F Y');
+        return Carbon::parse($createdAt)->translatedFormat('d M Y');
     }
 
     public function getUpdatedAtAttribute($updatedAt)
     {
-        return Carbon::parse($updatedAt)->translatedFormat('d F Y');
+        return Carbon::parse($updatedAt)->translatedFormat('d M Y');
     }
 
     public function setPasswordAttribute($password)
     {
         $this->attributes['password'] = Hash::make($password);
-    }
-
-    public function scopeStudents($query)
-    {
-        return $query->where('role_id', Role::STUDENT_ID);
     }
 
     public function adminlte_image()
@@ -74,11 +70,6 @@ class User extends Authenticatable
     public function adminlte_desc()
     {
         return $this->email;
-    }
-
-    public function adminlte_profile_url()
-    {
-        return 'profile/username';
     }
 
 }

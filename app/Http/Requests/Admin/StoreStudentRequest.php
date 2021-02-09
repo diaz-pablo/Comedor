@@ -5,7 +5,7 @@ namespace App\Http\Requests\Admin;
 use App\Models\Role;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreUserRequest extends FormRequest
+class StoreStudentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,7 +14,8 @@ class StoreUserRequest extends FormRequest
      */
     public function authorize()
     {
-        return auth()->user()->role_id === Role::ADMIN_ID;
+        //return auth()->user()->role_id === Role::ADMIN_ID;
+        return auth()->user()->hasRole([Role::ADMIN_NAME]);
     }
 
     /**
@@ -30,19 +31,19 @@ class StoreUserRequest extends FormRequest
                 return [];
             case 'POST': {
                 return [
-                    'document_number' => 'bail|required|integer|digits:8|unique:users',
+                    'document_number' => 'bail|required|integer|digits:8|unique:students,document_number',
                     'surname' => 'bail|required|string|max:255',
                     'name' => 'bail|required|string|max:255',
-                    'email' => 'bail|required|email|unique:users',
+                    'email' => 'bail|required|email|unique:users,email',
                     'status' => 'bail|required',
                 ];
             }
             case 'PUT': {
                 return [
-                    'document_number' => 'bail|required|integer|digits:8|unique:users,document_number,' . $this->route()->user->id,
+                    'document_number' => 'bail|required|integer|digits:8|unique:students,document_number,' . $this->route('student')->id,
                     'surname' => 'bail|required|string|max:255',
                     'name' => 'bail|required|string|max:255',
-                    'email' => 'bail|required|email|unique:users,email,' . $this->route()->user->id,
+                    'email' => 'bail|required|email|unique:users,email,' . $this->route('student')->user_id,
                     'status' => 'bail|required',
                 ];
             }

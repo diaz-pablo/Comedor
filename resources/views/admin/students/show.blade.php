@@ -1,14 +1,14 @@
 @extends('adminlte::page')
 
-@section('title', 'Mostrar usuario')
+@section('title', 'Datos del estudiante #' . $student->id)
 
 @section('plugins.Datatables', true)
 
 @section('content_header')
     <div class="d-flex justify-content-between align-items-center">
-        <h1>Mostrar usuario</h1>
+        <h1>Datos del estudiante #{{ $student->id }}</h1>
 
-        <a href="{{ route('admin.users.index') }}" class="btn btn-outline-secondary border">
+        <a href="{{ route('admin.students.index') }}" class="btn btn-outline-secondary border">
             <i class="fas fa-arrow-left"></i> Regresar
         </a>
     </div>
@@ -34,7 +34,7 @@
                             <p class="font-weight-bold text-center mb-0">
                                 Número de documento
                             </p>
-                            <p class="text-center font-weight-normal">{{ $user->document_number }}</p>
+                            <p class="text-center font-weight-normal">{{ $student->document_number }}</p>
 
                             <p class="font-weight-bold text-center mb-0">
                                 Nombre completo
@@ -60,9 +60,9 @@
                         Estado actual
                     </p>
                     <p class="text-center font-weight-normal text-uppercase">
-                        @if ($user->status === App\Models\User::SUSPENDED)
+                        @if ($student->status === App\Models\Student::SUSPENDED)
                             <span class="badge badge-pill badge-danger">Suspendido</span>
-                        @elseif($user->status === App\Models\User::PENDING)
+                        @elseif($student->status === App\Models\Student::PENDING)
                             <span class="badge badge-pill badge-warning">Pendiente</span>
                         @else <!-- Está ACTIVO -->
                             <span class="badge badge-pill badge-success">Activo</span>

@@ -4,7 +4,7 @@ namespace App\Observers;
 
 use App\Models\User;
 use App\Notifications\SendCredentialsToTheNewUser;
-use App\Notifications\SendPasswordToUpdateUser;
+use App\Notifications\SendNewPasswordToUpdatedUser;
 use Illuminate\Support\Str;
 
 class UserObserver
@@ -37,7 +37,7 @@ class UserObserver
             $newPassword = Str::random(12);
             $user->password = $newPassword;
 
-            $user->notify(new SendPasswordToUpdateUser($newPassword));
+            $user->notify(new SendNewPasswordToUpdatedUser($newPassword));
         }
     }
 

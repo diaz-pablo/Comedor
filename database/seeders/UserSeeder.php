@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Role;
+use App\Models\Student;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -18,19 +19,26 @@ class UserSeeder extends Seeder
         User::factory(1)->create([
             'role_id' => Role::ADMIN_ID,
             'email' => 'administrador@comedor.unsa',
-            'status' => User::ACTIVE,
             'email_verified_at' => now(),
-            'deleted_at' => null,
         ]);
 
         User::factory(1)->create([
             'role_id' => Role::STUDENT_ID,
             'email' => 'estudiante@comedor.unsa',
-            'status' => User::ACTIVE,
             'email_verified_at' => now(),
-            'deleted_at' => null,
-        ]);
+        ])->each(function (User $user) {
+            Student::factory(1)->create([
+                'user_id' => $user->id,
+                'status' => Student::ACTIVE,
+            ]);
+        });
 
-        User::factory(498)->create();
+        User::factory(498)
+            ->create()
+            ->each(function (User $user) {
+                Student::factory(1)->create([
+                   'user_id' => $user->id,
+                ]);
+            });
     }
 }
