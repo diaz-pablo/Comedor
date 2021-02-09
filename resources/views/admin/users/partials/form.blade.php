@@ -242,9 +242,9 @@
                             class="btn {{ $user->id ? 'btn-warning' : 'btn-success' }} btn-block"
                         >
                             @if ($user->id)
-                                <i class="fas fa-user-edit"></i> Editar usuario
+                                <i class="fas fa-edit"></i> Editar usuario
                             @else
-                                <i class="fas fa-user-plus"></i> Crear usuario
+                                <i class="fas fa-plus"></i> Crear usuario
                             @endif
                         </button>
                     </div>

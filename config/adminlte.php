@@ -231,7 +231,7 @@ return [
         [
             'text'    => 'Usuarios',
             'route'   => 'admin.users.index',
-            'icon'    => 'fas fa-fw fa-users-cog',
+            'icon'    => 'fas fa-fw fa-users',
         ],
         ['header' => 'labels'],
         [

@@ -26,7 +26,7 @@
                     @csrf @method('DELETE')
 
                     <button type="submit" class="btn btn-danger btn-block mb-0">
-                        <i class="fas fa-user-times"></i> Si, eliminarlo
+                        <i class="fas fa-trash"></i> Si, eliminarlo
                     </button>
                 </form>
 

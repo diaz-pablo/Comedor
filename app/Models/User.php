@@ -36,6 +36,11 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class);
     }
 
+    public function hasRole(array $roles)
+    {
+        return collect($roles)->intersect($this->role->name)->count();
+    }
+
     public function getProfilePhotoPathAttribute($profilePhotoPath)
     {
         return Storage::url($profilePhotoPath);

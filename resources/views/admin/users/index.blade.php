@@ -9,7 +9,7 @@
         <h1>Lista de usuarios</h1>
 
         <a href="{{ route('admin.users.create') }}" class="btn btn-success">
-            <i class="fas fa-user-plus"></i> Crear usuario
+            <i class="fas fa-plus"></i> Crear usuario
         </a>
     </div>
 @endsection
@@ -34,8 +34,8 @@
                                 <th scope="col">Documento</th>
                                 <th scope="col">Apellido</th>
                                 <th scope="col">Nombre</th>
-                                <th scope="col">Estado actual</th>
-                                <th scope="col">Acciones</th>
+                                <th scope="col">Estado</th>
+                                <th scope="col" class="text-center">Acciones</th>
                             </tr>
                         </thead>
                     </table>
@@ -60,7 +60,7 @@
                     {data: 'document_number'},
                     {data: 'surname'},
                     {data: 'name'},
-                    {data: 'status', className: 'text-center'},
+                    {data: 'status', className: 'text-md-center'},
                     {data: 'actions', 'orderable': false}
                 ],
                 order: [
