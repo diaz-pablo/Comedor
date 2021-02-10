@@ -129,4 +129,5 @@ class StudentController extends Controller
         session()->flash('alert', [$alertColor, $alertTitle, $alertMessage]);
         return redirect()->route('admin.students.index');
     }
+
 }

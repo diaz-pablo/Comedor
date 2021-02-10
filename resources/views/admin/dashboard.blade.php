@@ -20,7 +20,7 @@
                     <i class="fas fa-user-check"></i>
                 </div>
 
-                <a href="{{ route('admin.students.index') }}" class="small-box-footer">
+                <a href="{{ route('admin.students.index', ['search' => 'activo']) }}" class="small-box-footer">
                     Más información <i class="fas fa-arrow-circle-right"></i>
                 </a>
             </div>
@@ -38,7 +38,7 @@
                     <i class="fas fa-user-clock"></i>
                 </div>
 
-                <a href="{{ route('admin.students.index') }}" class="small-box-footer">
+                <a href="{{ route('admin.students.index', ['search' => 'pendiente']) }}" class="small-box-footer">
                     Más información <i class="fas fa-arrow-circle-right"></i>
                 </a>
             </div>
@@ -56,7 +56,7 @@
                     <i class="fas fa-user-times"></i>
                 </div>
 
-                <a href="{{ route('admin.students.index') }}" class="small-box-footer">
+                <a href="{{ route('admin.students.index', ['search' => 'suspendido']) }}" class="small-box-footer">
                    Más información <i class="fas fa-arrow-circle-right"></i>
                 </a>
             </div>
