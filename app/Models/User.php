@@ -37,6 +37,11 @@ class User extends Authenticatable
         return $this->hasOne(Student::class);
     }
 
+    public function menus()
+    {
+        return $this->hasMany(Menu::class);
+    }
+
     public function hasRole(array $roles)
     {
         return collect($roles)->intersect($this->role->name)->count();

@@ -13,4 +13,9 @@ class Starter extends Model
         'name'
     ];
 
+    public function menus()
+    {
+        return $this->hasMany(Menu::class);
+    }
+
 }

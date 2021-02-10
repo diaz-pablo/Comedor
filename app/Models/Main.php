@@ -13,4 +13,9 @@ class Main extends Model
         'name'
     ];
 
+    public function menus()
+    {
+        return $this->hasMany(Menu::class);
+    }
+
 }

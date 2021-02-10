@@ -13,4 +13,24 @@ class Menu extends Model
         'user_id', 'starter_id', 'main_id', 'dessert_id', 'service_at', 'publication_at', 'available_quantity'
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function starter()
+    {
+        return $this->belongsTo(Starter::class);
+    }
+
+    public function main()
+    {
+        return $this->belongsTo(Main::class);
+    }
+
+    public function dessert()
+    {
+        return $this->belongsTo(Dessert::class);
+    }
+
 }
