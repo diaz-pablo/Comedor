@@ -7,7 +7,61 @@
 @endsection
 
 @section('content')
-    <p>Welcome to this beautiful admin panel.</p>
+    <div class="row">
+        <div class="col-12 col-sm-4">
+            <div class="small-box bg-success">
+                <div class="inner">
+                    <h3>{{ $quantityActiveStudents }}</h3>
+
+                    <p>Estudiantes activos</p>
+                </div>
+
+                <div class="icon">
+                    <i class="fas fa-user-check"></i>
+                </div>
+
+                <a href="{{ route('admin.students.index') }}" class="small-box-footer">
+                    Más información <i class="fas fa-arrow-circle-right"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-4">
+            <div class="small-box bg-warning">
+                <div class="inner">
+                    <h3>{{ $quantityPendingStudents }}</h3>
+
+                    <p>Estudiantes pendientes</p>
+                </div>
+
+                <div class="icon">
+                    <i class="fas fa-user-clock"></i>
+                </div>
+
+                <a href="{{ route('admin.students.index') }}" class="small-box-footer">
+                    Más información <i class="fas fa-arrow-circle-right"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-4">
+            <div class="small-box bg-danger">
+                <div class="inner">
+                    <h3>{{ $quantitySuspendedStudents }}</h3>
+
+                    <p>Estudiantes suspendidos</p>
+                </div>
+
+                <div class="icon">
+                    <i class="fas fa-user-times"></i>
+                </div>
+
+                <a href="{{ route('admin.students.index') }}" class="small-box-footer">
+                   Más información <i class="fas fa-arrow-circle-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('css')
