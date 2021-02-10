@@ -1,12 +1,12 @@
 @extends('adminlte::page')
 
-@section('title', 'Lista de estudiantes')
+@section('title', 'Estudiantes')
 
 @section('plugins.Datatables', true)
 
 @section('content_header')
     <div class="d-flex justify-content-between align-items-center">
-        <h1>Lista de estudiantes</h1>
+        <h1>Estudiantes</h1>
 
         <a href="{{ route('admin.students.create') }}" class="btn btn-success">
             <i class="fas fa-plus"></i> Crear

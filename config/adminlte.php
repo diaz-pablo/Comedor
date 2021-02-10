@@ -224,7 +224,7 @@ return [
 
     'menu' => [
         [
-            'text'        => 'Panel de administración',
+            'text'        => 'Dashboard',
             'route'       => 'admin.dashboard',
             'icon'        => 'fas fa-fw fa-tachometer-alt',
         ],
@@ -232,6 +232,11 @@ return [
             'text'    => 'Estudiantes',
             'route'   => 'admin.students.index',
             'icon'    => 'fas fa-fw fa-users',
+        ],
+        [
+            'text'    => 'Menús',
+            'route'   => 'admin.menus.index',
+            'icon'    => 'fas fa-fw fa-utensils',
         ],
         ['header' => 'labels'],
         [

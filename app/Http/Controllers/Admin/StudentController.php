@@ -28,11 +28,8 @@ class StudentController extends Controller
 
     public function create()
     {
-        $student = new Student;
-
         return view('admin.students.create', [
-            'student' => $student,
-            'user' => $student->user
+            'student' => new Student
         ]);
     }
 
@@ -65,18 +62,16 @@ class StudentController extends Controller
 
     public function show(Student $student)
     {
-        return view('admin.students.show', [
-            'student' => $student,
-            'user' => $student->user
-        ]);
+        $student->load('user')->get();
+
+        return view('admin.students.show', compact('student'));
     }
 
     public function edit(Student $student)
     {
-        return view('admin.students.edit', [
-            'student' => $student,
-            'user' => $student->user
-        ]);
+        $student->load('user')->get();
+
+        return view('admin.students.edit', compact('student'));
     }
 
 

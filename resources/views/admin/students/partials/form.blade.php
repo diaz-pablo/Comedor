@@ -44,7 +44,7 @@
                             id="document_number"
                             name="document_number"
                             class="form-control @error('document_number') is-invalid @enderror"
-                            placeholder="Ingresa el número de documento."
+                            placeholder="Ingresa el número de documento del estudiante."
                             value="{{ old('document_number', $student->document_number) }}"
                             autofocus
                         >
@@ -64,8 +64,8 @@
                             id="surname"
                             name="surname"
                             class="form-control @error('surname') is-invalid @enderror"
-                            placeholder="Ingresa el apellido."
-                            value="{{ old('surname', optional($user)->surname) }}"
+                            placeholder="Ingresa el apellido del estudiante."
+                            value="{{ old('surname', optional($student->user)->surname) }}"
                         >
 
                         @include('admin.partials.validation', ['field_name' => 'surname'])
@@ -83,8 +83,8 @@
                             id="name"
                             name="name"
                             class="form-control @error('name') is-invalid @enderror"
-                            placeholder="Ingresa el nombre."
-                            value="{{ old('name', optional($user)->name) }}"
+                            placeholder="Ingresa el nombre del estudiante."
+                            value="{{ old('name', optional($student->user)->name) }}"
                         >
 
                         @include('admin.partials.validation', ['field_name' => 'name'])
@@ -118,8 +118,8 @@
                             id="email"
                             name="email"
                             class="form-control @error('email') is-invalid @enderror"
-                            placeholder="Ingresa el correo electrónico."
-                            value="{{ old('email', optional($user)->email) }}"
+                            placeholder="Ingresa el correo electrónico del estudiante."
+                            value="{{ old('email', optional($student->user)->email) }}"
                         >
 
                         @include('admin.partials.validation', ['field_name' => 'email'])

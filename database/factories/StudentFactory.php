@@ -24,7 +24,11 @@ class StudentFactory extends Factory
         return [
             'user_id' => null,
             'document_number' => $this->faker->randomNumber(8, true),
-            'status' => $this->faker->randomElement([Student::SUSPENDED, Student::PENDING, Student::ACTIVE]),
+            'status' => $this->faker->randomElement([
+                Student::SUSPENDED,
+                Student::PENDING, Student::PENDING,
+                Student::ACTIVE, Student::ACTIVE, Student::ACTIVE
+            ]),
         ];
     }
 }

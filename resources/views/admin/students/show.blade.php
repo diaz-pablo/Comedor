@@ -24,8 +24,8 @@
                     <div class="row align-items-center justify-content-center">
                         <div class="col-6 col-sm-3 col-md-4">
                             <img
-                                src="{{ $user->profile_photo_path }}"
-                                alt="{{ $user->name . ' ' . $user->surname }}"
+                                src="{{ $student->user->profile_photo_path }}"
+                                alt="{{ $student->user->name . ' ' . $student->user->surname }}"
                                 class="img-fluid rounded-circle shadow mb-3"
                             >
                         </div>
@@ -39,7 +39,7 @@
                             <p class="font-weight-bold text-center mb-0">
                                 Nombre completo
                             </p>
-                            <p class="text-center font-weight-normal">{{ $user->name . ' ' . $user->surname }}</p>
+                            <p class="text-center font-weight-normal">{{ $student->user->name . ' ' . $student->user->surname }}</p>
                         </div>
                     </div>
                 </div>
@@ -54,10 +54,10 @@
                     <p class="font-weight-bold text-center mb-0">
                         Correo electrónico
                     </p>
-                    <p class="text-center font-weight-normal">{{ $user->email }}</p>
+                    <p class="text-center font-weight-normal">{{ $student->user->email }}</p>
 
                     <p class="font-weight-bold text-center mb-0">
-                        Estado actual
+                        Estado
                     </p>
                     <p class="text-center font-weight-normal text-uppercase">
                         @if ($student->status === App\Models\Student::SUSPENDED)
@@ -72,12 +72,12 @@
                     <p class="font-weight-bold text-center mb-0">
                         Fecha de creación
                     </p>
-                    <p class="text-center font-weight-normal">{{ $user->created_at }}</p>
+                    <p class="text-center font-weight-normal">{{ $student->user->created_at }}</p>
 
                     <p class="font-weight-bold text-center mb-0">
                         Fecha de actualización
                     </p>
-                    <p class="text-center font-weight-normal">{{ $user->updated_at }}</p>
+                    <p class="text-center font-weight-normal">{{ $student->user->updated_at }}</p>
                 </div>
             </div>
         </div>
