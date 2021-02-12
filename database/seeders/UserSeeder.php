@@ -33,7 +33,7 @@ class UserSeeder extends Seeder
             ]);
         });
 
-        User::factory(99)
+        User::factory(98)
             ->create()
             ->each(function (User $user) {
                 Student::factory(1)->create([

@@ -14,7 +14,6 @@ class StoreStudentRequest extends FormRequest
      */
     public function authorize()
     {
-        //return auth()->user()->role_id === Role::ADMIN_ID;
         return auth()->user()->hasRole([Role::ADMIN_NAME]);
     }
 

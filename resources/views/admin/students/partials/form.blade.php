@@ -1,6 +1,7 @@
 <form
     method="POST"
     action="{{ $student->id ? route('admin.students.update', $student) : route('admin.students.store') }}"
+    class="row"
     novalidate
 >
     @csrf
@@ -9,41 +10,24 @@
         @method('PUT')
     @endif
 
-    <div id="stepper" class="bs-stepper">
-        <!-- BS STEPPER HEADER -->
-        <div class="bs-stepper-header">
-            <div class="step" data-target="#personal-information">
-                <button type="button" class="btn step-trigger">
-                    <span class="bs-stepper-circle">1</span>
-                    <span class="bs-stepper-label">Datos personales</span>
-                </button>
-            </div>
+    <div class="col-12 col-md-6">
+        <div class="card card-outline {{ $student->id ? 'card-warning' : 'card-success' }}">
+            <div class="card-body">
+                <h4 class="card-title text-uppercase w-100 mb-3">
+                    Datos personales
+                </h4>
 
-            <div class="line"></div>
-
-            <div class="step" data-target="#account-data">
-                <button type="button" class="btn step-trigger">
-                    <span class="bs-stepper-circle">2</span>
-                    <span class="bs-stepper-label">Datos de la cuenta</span>
-                </button>
-            </div>
-        </div>
-        <!-- BS STEPPER HEADER -->
-
-        <!-- BS STEPPER CONTENT -->
-        <div class="bs-stepper-content">
-            <div id="personal-information" class="content">
                 <div class="form-group row">
-                    <label for="document_number" class="col-12 col-md-4 col-form-label text-muted">
+                    <label for="document_number" class="col-12 col-form-label font-weight-light">
                         Número de documento
                     </label>
 
-                    <div class="col-12 col-md-8">
+                    <div class="col-12">
                         <input
                             type="text"
                             id="document_number"
                             name="document_number"
-                            class="form-control @error('document_number') is-invalid @enderror"
+                            class="form-control @error('document_number') is-invalid @enderror font-weight-light"
                             placeholder="Ingresa el número de documento del estudiante."
                             value="{{ old('document_number', $student->document_number) }}"
                             autofocus
@@ -54,16 +38,16 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="surname" class="col-12 col-md-4 col-form-label text-muted">
+                    <label for="surname" class="col-12 col-form-label font-weight-light">
                         Apellido
                     </label>
 
-                    <div class="col-12 col-md-8">
+                    <div class="col-12">
                         <input
                             type="text"
                             id="surname"
                             name="surname"
-                            class="form-control @error('surname') is-invalid @enderror"
+                            class="form-control @error('surname') is-invalid @enderror font-weight-light"
                             placeholder="Ingresa el apellido del estudiante."
                             value="{{ old('surname', optional($student->user)->surname) }}"
                         >
@@ -73,16 +57,16 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="name" class="col-12 col-md-4 col-form-label text-muted">
+                    <label for="name" class="col-12 col-form-label font-weight-light">
                         Nombre
                     </label>
 
-                    <div class="col-12 col-md-8">
+                    <div class="col-12">
                         <input
                             type="text"
                             id="name"
                             name="name"
-                            class="form-control @error('name') is-invalid @enderror"
+                            class="form-control @error('name') is-invalid @enderror font-weight-light"
                             placeholder="Ingresa el nombre del estudiante."
                             value="{{ old('name', optional($student->user)->name) }}"
                         >
@@ -90,34 +74,28 @@
                         @include('admin.partials.validation', ['field_name' => 'name'])
                     </div>
                 </div>
-
-                <div class="row mb-1">
-                    <div class="col-md-4"></div>
-
-                    <div class="col-md-4">
-                        <button
-                            type="button"
-                            id="next"
-                            class="btn btn-outline-secondary btn-block border"
-                        >
-                            Datos de la cuenta <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                </div>
             </div>
+        </div>
+    </div>
 
-            <div id="account-data" class="content">
+    <div class="col-12 col-md-6">
+        <div class="card card-outline {{ $student->id ? 'card-warning' : 'card-success' }}">
+            <div class="card-body">
+                <h4 class="card-title text-uppercase w-100 mb-3">
+                    Datos de la cuenta
+                </h4>
+
                 <div class="form-group row">
-                    <label for="email" class="col-12 col-md-4 col-form-label text-muted">
+                    <label for="email" class="col-12 col-form-label font-weight-light">
                         Correo electrónico
                     </label>
 
-                    <div class="col-12 col-md-8">
+                    <div class="col-12">
                         <input
                             type="text"
                             id="email"
                             name="email"
-                            class="form-control @error('email') is-invalid @enderror"
+                            class="form-control @error('email') is-invalid @enderror font-weight-light"
                             placeholder="Ingresa el correo electrónico del estudiante."
                             value="{{ old('email', optional($student->user)->email) }}"
                         >
@@ -128,20 +106,20 @@
 
                 @if ($student->id)
                     <div class="form-group row">
-                        <div class="col-12 col-md-4"></div>
-
-                        <div class="col-12 col-md-8">
-                            <p class="text-secondary text-sm mb-0">
-                                Si actualizas el correo electrónico, el usuario deberá verificar el mismo.
+                        <div class="col-12">
+                            <p class="font-weight-light text-sm mb-0">
+                                Al actualizar el correo electrónico, el estudiante deberá verificar el mismo.
                             </p>
                         </div>
                     </div>
                 @endif
 
                 <div class="form-group row">
-                    <div class="col-12 col-md-4"></div>
+                    <label for="generate_new_password" class="col-12 col-form-label font-weight-light">
+                        Contraseña
+                    </label>
 
-                    <div class="col-12 col-md-8">
+                    <div class="col-12">
                         @if ($student->id)
                             <div class="custom-control custom-checkbox">
                                 <input
@@ -151,23 +129,23 @@
                                     class="custom-control-input"
                                 >
 
-                                <label for="generate_new_password" class="custom-control-label text-secondary d-flex align-items-center">
-                                    Generar nueva contraseña y enviarla al correo electrónico indicado arriba.
+                                <label for="generate_new_password" class="custom-control-label font-weight-light text-sm">
+                                    Generar una nueva contraseña y enviarla al correo electrónico indicado arriba.
                                 </label>
                             </div>
                         @else
-                            <p class="text-secondary text-sm mb-0">
-                                Se generará una contraseña de manera aleatoria, y se la enviará al correo electrónico indicado arriba.
+                            <p class="font-weight-light text-sm mb-0">
+                                La contraseña se genera de manera aleatoria y se envía al correo electrónico indicado arriba.
                             </p>
                         @endif
                     </div>
                 </div>
 
                 <div class="form-group row">
-                    <label class="col-12 col-md-4 col-form-label text-muted">Estado</label>
+                    <label class="col-12 col-form-label font-weight-light">Estado</label>
 
-                    <div class="col-12 col-md-8">
-                        <div class="custom-control custom-radio">
+                    <div class="col-12">
+                        <div class="custom-control custom-radio custom-control-inline">
                             <input
                                 type="radio"
                                 id="suspended"
@@ -179,13 +157,13 @@
 
                             <label
                                 for="suspended"
-                                class="custom-control-label text-secondary font-weight-normal @error('status') text-danger @enderror"
+                                class="custom-control-label text-secondary font-weight-light @error('status') text-danger @enderror"
                             >
                                 Suspendido
                             </label>
                         </div>
 
-                        <div class="custom-control custom-radio">
+                        <div class="custom-control custom-radio custom-control-inline">
                             <input
                                 type="radio"
                                 id="pending"
@@ -197,13 +175,13 @@
 
                             <label
                                 for="pending"
-                                class="custom-control-label text-secondary font-weight-normal @error('status') text-danger @enderror"
+                                class="custom-control-label text-secondary font-weight-light @error('status') text-danger @enderror"
                             >
                                 Pendiente
                             </label>
                         </div>
 
-                        <div class="custom-control custom-radio">
+                        <div class="custom-control custom-radio custom-control-inline">
                             <input
                                 type="radio"
                                 id="active"
@@ -215,7 +193,7 @@
 
                             <label
                                 for="active"
-                                class="custom-control-label text-secondary font-weight-normal @error('status') text-danger @enderror"
+                                class="custom-control-label text-secondary font-weight-light @error('status') text-danger @enderror"
                             >
                                 Activo
                             </label>
@@ -224,49 +202,21 @@
                         @include('admin.partials.validation', ['field_name' => 'status'])
                     </div>
                 </div>
+            </div>
 
-                <div class="row mb-1">
-                    <div class="col-md-4 d-flex justify-content-md-end">
-                        <button
-                            type="button"
-                            id="previous"
-                            class="btn btn-outline-secondary border btn-block mb-1"
-                        >
-                            <i class="fas fa-arrow-left"></i> Datos personales
-                        </button>
-                    </div>
-
-                    <div class="col-md-4">
-                        <button
-                            type="submit"
-                            class="btn {{ $student->id ? 'btn-warning' : 'btn-success' }} btn-block"
-                        >
-                            @if ($student->id)
-                                <i class="fas fa-edit"></i> Editar estudiante
-                            @else
-                                <i class="fas fa-plus"></i> Crear estudiante
-                            @endif
-                        </button>
-                    </div>
-                </div>
+            <div class="card-footer">
+                <button
+                    type="submit"
+                    class="btn {{ $student->id ? 'btn-warning' : 'btn-success' }}"
+                >
+                    @if ($student->id)
+                        <span class="text-uppercase">Editar estudiante</span>
+                    @else
+                        <span class="text-uppercase">Crear estudiante</span>
+                    @endif
+                </button>
             </div>
         </div>
-        <!-- BS STEPPER CONTENT -->
     </div>
 </form>
-
-@section('js')
-    <script>
-        const stepper = new Stepper(jQuery('#stepper')[0]);
-
-        jQuery('#next').on('click', function (e){
-            stepper.next();
-        });
-
-        jQuery('#previous').on('click', function (e){
-            e.preventDefault();
-            stepper.previous();
-        });
-    </script>
-@endsection
 

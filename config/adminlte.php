@@ -300,34 +300,34 @@ return [
             'active' => false,
             'files' => [
                 [
-                    'type' => 'js',
+                    'type' => 'css',
                     'asset' => false,
-                    'location' => '//cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js',
-                ],
-                [
-                    'type' => 'js',
-                    'asset' => false,
-                    'location' => '//cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js',
-                ],
-                [
-                    'type' => 'js',
-                    'asset' => false,
-                    'location' => '//cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js',
-                ],
-                [
-                    'type' => 'js',
-                    'asset' => false,
-                    'location' => '//cdn.datatables.net/responsive/2.2.6/js/responsive.bootstrap4.min.js',
+                    'location' => 'https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.min.css',
                 ],
                 [
                     'type' => 'css',
                     'asset' => false,
-                    'location' => '//cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.min.css',
+                    'location' => 'https://cdn.datatables.net/responsive/2.2.7/css/responsive.bootstrap4.min.css',
                 ],
                 [
-                    'type' => 'css',
+                    'type' => 'js',
                     'asset' => false,
-                    'location' => '//cdn.datatables.net/responsive/2.2.6/css/responsive.bootstrap4.min.css',
+                    'location' => 'https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => false,
+                    'location' => 'https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => false,
+                    'location' => 'https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => false,
+                    'location' => 'https://cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap4.min.js',
                 ],
             ],
         ],

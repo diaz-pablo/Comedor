@@ -1,24 +1,24 @@
 <a
     href="{{ route('admin.students.show', $id) }}"
-    class="btn btn-sm text-info"
+    class="btn btn-sm text-info text-uppercase"
 >
-    <i class="fas fa-eye"></i> Ver más
+    Ver más
 </a>
 
 <span class="text-black-50">|</span>
 
 <a
     href="{{ route('admin.students.edit', $id) }}"
-    class="btn btn-sm text-warning"
+    class="btn btn-sm text-warning text-uppercase"
 >
-    <i class="fas fa-edit"></i> Editar
+    Editar
 </a>
 
 <span class="text-black-50">|</span>
 
 <button
     type="button"
-    class="btn btn-sm text-danger"
+    class="btn btn-sm text-danger text-uppercase"
     data-toggle="modal"
     data-target="#delete-student"
     data-id="{{ $id }}"
@@ -27,6 +27,6 @@
     data-name="{{ $user['name'] }}"
     data-email="{{ $user['email'] }}"
 >
-    <i class="fas fa-trash"></i> Eliminar
+    Eliminar
 </button>
 

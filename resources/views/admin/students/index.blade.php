@@ -6,36 +6,36 @@
 
 @section('content_header')
     <div class="d-flex justify-content-between align-items-center">
-        <h1>Estudiantes</h1>
+        <h1 class="text-uppercase">Estudiantes</h1>
 
         <a href="{{ route('admin.students.create') }}" class="btn btn-success">
-            <i class="fas fa-plus"></i> Crear
+            <span class="text-uppercase">Crear</span>
         </a>
     </div>
 @endsection
 
 @section('content')
-    <div class="row">
-        @if (session()->has('alert'))
-            @include('admin.partials.alert', [
-                'alert_color' => session('alert')[0],
-                'alert_title' => session('alert')[1],
-                'alert_message' => session('alert')[2]
-            ])
-        @endif
+    @if (session()->has('alert'))
+        @include('admin.partials.alert', [
+            'alert_color' => session('alert')[0],
+            'alert_title' => session('alert')[1],
+            'alert_message' => session('alert')[2]
+        ])
+    @endif
 
+    <div class="row">
         <div class="col-12">
             <div class="card card-outline card-primary">
                 <div class="card-body table-responsive">
                     <table id="students-table" class="table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Documento</th>
-                                <th scope="col">Apellido</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Estado</th>
-                                <th scope="col" class="text-center">Acciones</th>
+                                <th scope="col" class="text-uppercase font-weight-bold">#</th>
+                                <th scope="col" class="text-uppercase font-weight-bold">Documento</th>
+                                <th scope="col" class="text-uppercase font-weight-bold">Apellido</th>
+                                <th scope="col" class="text-uppercase font-weight-bold">Nombre</th>
+                                <th scope="col" class="text-uppercase font-weight-bold">Estado</th>
+                                <th scope="col" class="text-uppercase font-weight-bold text-md-center">Acciones</th>
                             </tr>
                         </thead>
                     </table>
@@ -57,10 +57,10 @@
                 responsive: true,
                 autoWidth: false,
                 columns: [
-                    {data: 'id'},
-                    {data: 'document_number'},
-                    {data: 'user.surname'},
-                    {data: 'user.name'},
+                    {data: 'id', className: 'font-weight-bold'},
+                    {data: 'document_number', className: 'font-weight-light'},
+                    {data: 'user.surname', className: 'font-weight-light'},
+                    {data: 'user.name', className: 'font-weight-light'},
                     {data: 'status', className: 'text-md-center'},
                     {data: 'actions', className: 'text-md-center', orderable: false}
                 ],
