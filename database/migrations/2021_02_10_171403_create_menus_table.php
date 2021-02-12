@@ -19,8 +19,8 @@ class CreateMenusTable extends Migration
             $table->unsignedBigInteger('starter_id');
             $table->unsignedBigInteger('main_id');
             $table->unsignedBigInteger('dessert_id');
-            $table->timestamp('service_at');
-            $table->timestamp('publication_at');
+            $table->date('service_at')->unique();
+            $table->date('publication_at');
             $table->unsignedSmallInteger('available_quantity');
             $table->timestamps();
 

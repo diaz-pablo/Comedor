@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Dessert;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Storage;
 
@@ -23,6 +24,10 @@ class DatabaseSeeder extends Seeder
         $this->call([
             RoleSeeder::class,
             UserSeeder::class,
+            StarterSeeder::class,
+            MainSeeder::class,
+            DessertSeeder::class,
+            MenuSeeder::class
         ]);
     }
 }
