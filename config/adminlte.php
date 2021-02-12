@@ -231,29 +231,16 @@ return [
         [
             'text'    => 'Estudiantes',
             'route'   => 'admin.students.index',
+            'active'  => ['admin/students*'],
             'icon'    => 'fas fa-fw fa-users',
         ],
         [
             'text'    => 'Menús',
             'route'   => 'admin.menus.index',
+            'active'  => ['admin/menus*'],
             'icon'    => 'fas fa-fw fa-utensils',
         ],
-        ['header' => 'labels'],
-        [
-            'text'       => 'important',
-            'icon_color' => 'red',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'warning',
-            'icon_color' => 'yellow',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'information',
-            'icon_color' => 'cyan',
-            'url'        => '#',
-        ],
+        ['header' => 'OTROS'],
         [
             'text'        => 'Regresar a Inicio',
             'route'       => 'home',
@@ -378,21 +365,6 @@ return [
                     'type' => 'js',
                     'asset' => false,
                     'location' => '//cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js',
-                ],
-            ],
-        ],
-        'BsStepper' => [
-            'active' => false,
-            'files' => [
-                [
-                    'type' => 'css',
-                    'asset' => false,
-                    'location' => '//cdn.jsdelivr.net/npm/bs-stepper/dist/css/bs-stepper.min.css',
-                ],
-                [
-                    'type' => 'js',
-                    'asset' => false,
-                    'location' => '//cdn.jsdelivr.net/npm/bs-stepper/dist/js/bs-stepper.min.js',
                 ],
             ],
         ],
