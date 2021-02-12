@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Dashboard</h1>
+    <h1 class="text-uppercase">Dashboard</h1>
 @endsection
 
 @section('content')
@@ -11,9 +11,9 @@
         <div class="col-12 col-sm-4">
             <div class="small-box bg-success">
                 <div class="inner">
-                    <h3>{{ $quantityActiveStudents }}</h3>
+                    <h3 class="font-weight-light">{{ $quantityActiveStudents }}</h3>
 
-                    <p>Estudiantes activos</p>
+                    <p class="text-uppercase font-weight-light">Estudiantes activos</p>
                 </div>
 
                 <div class="icon">
@@ -21,7 +21,7 @@
                 </div>
 
                 <a href="{{ route('admin.students.index', ['search' => 'activo']) }}" class="small-box-footer">
-                    Más información <i class="fas fa-arrow-circle-right"></i>
+                    <span class="font-weight-light">Más información</span> <i class="fas fa-arrow-circle-right"></i>
                 </a>
             </div>
         </div>
@@ -29,9 +29,9 @@
         <div class="col-12 col-sm-4">
             <div class="small-box bg-warning">
                 <div class="inner">
-                    <h3>{{ $quantityPendingStudents }}</h3>
+                    <h3 class="font-weight-light">{{ $quantityPendingStudents }}</h3>
 
-                    <p>Estudiantes pendientes</p>
+                    <p class="text-uppercase font-weight-light">Estudiantes pendientes</p>
                 </div>
 
                 <div class="icon">
@@ -39,7 +39,7 @@
                 </div>
 
                 <a href="{{ route('admin.students.index', ['search' => 'pendiente']) }}" class="small-box-footer">
-                    Más información <i class="fas fa-arrow-circle-right"></i>
+                    <span class="font-weight-light">Más información</span> <i class="fas fa-arrow-circle-right"></i>
                 </a>
             </div>
         </div>
@@ -47,9 +47,9 @@
         <div class="col-12 col-sm-4">
             <div class="small-box bg-danger">
                 <div class="inner">
-                    <h3>{{ $quantitySuspendedStudents }}</h3>
+                    <h3 class="font-weight-light">{{ $quantitySuspendedStudents }}</h3>
 
-                    <p>Estudiantes suspendidos</p>
+                    <p class="text-uppercase font-weight-light">Estudiantes suspendidos</p>
                 </div>
 
                 <div class="icon">
@@ -57,7 +57,7 @@
                 </div>
 
                 <a href="{{ route('admin.students.index', ['search' => 'suspendido']) }}" class="small-box-footer">
-                   Más información <i class="fas fa-arrow-circle-right"></i>
+                    <span class="font-weight-light">Más información</span> <i class="fas fa-arrow-circle-right"></i>
                 </a>
             </div>
         </div>
