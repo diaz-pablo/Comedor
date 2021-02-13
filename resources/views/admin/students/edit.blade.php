@@ -15,8 +15,6 @@
 @endsection
 
 @section('content')
-    @include('admin.students.partials.alert')
-
     @include('admin.students.partials.form')
 @endsection
 

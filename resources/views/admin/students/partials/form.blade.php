@@ -145,59 +145,35 @@
                     <label class="col-12 col-form-label font-weight-light">Estado</label>
 
                     <div class="col-12">
-                        <div class="custom-control custom-radio custom-control-inline">
-                            <input
-                                type="radio"
-                                id="suspended"
-                                name="status"
-                                value="{{ App\Models\Student::SUSPENDED }}"
-                                class="custom-control-input @error('status') is-invalid @enderror"
-                                {{ $student->status === App\Models\Student::SUSPENDED || old('status') === App\Models\Student::SUSPENDED ? "checked" : "" }}
-                            >
+                        <select name="status" class="custom-select font-weight-light @error('status') is-invalid @enderror">
+                            <option class="font-weight-light">
+                                -- Elige un estado para el estudiante --
+                            </option>
 
-                            <label
-                                for="suspended"
-                                class="custom-control-label text-secondary font-weight-light @error('status') text-danger @enderror"
+                            <option
+                                class="font-weight-light"
+                                value="{{ App\Models\Student::SUSPENDED }}"
+                                {{ $student->status === App\Models\Student::SUSPENDED || old('status') === App\Models\Student::SUSPENDED ? "selected" : "" }}
                             >
                                 Suspendido
-                            </label>
-                        </div>
+                            </option>
 
-                        <div class="custom-control custom-radio custom-control-inline">
-                            <input
-                                type="radio"
-                                id="pending"
+                            <option
+                                class="font-weight-light"
                                 value="{{ App\Models\Student::PENDING }}"
-                                name="status"
-                                class="custom-control-input @error('status') is-invalid @enderror"
-                                {{ $student->status === App\Models\Student::PENDING || old('status') === App\Models\Student::PENDING ? "checked" : "" }}
-                            >
-
-                            <label
-                                for="pending"
-                                class="custom-control-label text-secondary font-weight-light @error('status') text-danger @enderror"
+                                {{ $student->status === App\Models\Student::PENDING || old('status') === App\Models\Student::PENDING ? "selected" : "" }}
                             >
                                 Pendiente
-                            </label>
-                        </div>
+                            </option>
 
-                        <div class="custom-control custom-radio custom-control-inline">
-                            <input
-                                type="radio"
-                                id="active"
+                            <option
+                                class="font-weight-light"
                                 value="{{ App\Models\Student::ACTIVE }}"
-                                name="status"
-                                class="custom-control-input @error('status') is-invalid @enderror"
-                                {{ $student->status === App\Models\Student::ACTIVE || old('status') === App\Models\Student::ACTIVE ? "checked" : "" }}
-                            >
-
-                            <label
-                                for="active"
-                                class="custom-control-label text-secondary font-weight-light @error('status') text-danger @enderror"
+                                {{ $student->status === App\Models\Student::ACTIVE || old('status') === App\Models\Student::ACTIVE ? "selected" : "" }}
                             >
                                 Activo
-                            </label>
-                        </div>
+                            </option>
+                        </select>
 
                         @include('admin.partials.validation', ['field_name' => 'status'])
                     </div>

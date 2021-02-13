@@ -3,7 +3,9 @@
 namespace App\Http\Requests\Admin;
 
 use App\Models\Role;
+use App\Models\Student;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreStudentRequest extends FormRequest
 {
@@ -34,7 +36,7 @@ class StoreStudentRequest extends FormRequest
                     'surname' => 'bail|required|string|max:255',
                     'name' => 'bail|required|string|max:255',
                     'email' => 'bail|required|email|unique:users,email',
-                    'status' => 'bail|required',
+                    'status' => 'bail|' . Rule::in([Student::SUSPENDED, Student::PENDING, Student::ACTIVE]),
                 ];
             }
             case 'PUT': {
@@ -43,9 +45,22 @@ class StoreStudentRequest extends FormRequest
                     'surname' => 'bail|required|string|max:255',
                     'name' => 'bail|required|string|max:255',
                     'email' => 'bail|required|email|unique:users,email,' . $this->route('student')->user_id,
-                    'status' => 'bail|required',
+                    'status' => 'bail|' . Rule::in([Student::SUSPENDED, Student::PENDING, Student::ACTIVE]),
                 ];
             }
         }
     }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'status.in' =>'El campo :attribute es obligatorio.'
+        ];
+    }
+
 }
