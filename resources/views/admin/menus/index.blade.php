@@ -2,117 +2,95 @@
 
 @section('title', 'Menús')
 
-@section('plugins.DatePicker', true)
-@section('plugins.Select2', true)
+@section('plugins.Datatables', true)
 
 @section('content_header')
     <div class="d-flex justify-content-between align-items-center">
-        <h1>Menús</h1>
+        <h1 class="text-uppercase">Menús</h1>
 
         <a href="{{ route('admin.menus.create') }}" class="btn btn-success">
-            <i class="fas fa-plus"></i> Crear
+            <span class="text-uppercase">Crear</span>
         </a>
     </div>
 @endsection
 
 @section('content')
-    <main class="row">
-        @foreach($menus as $menu)
-            <div class="col-12 col-sm-6 col-md-4">
-                <div class="card card-outline card-primary">
-                    <img
-                        src="{{ Storage::url('/default-user.png') }}"
-                        class="card-img-top img-fluid shadow-sm"
-                        alt="..."
-                        style="height: 12.5rem;"
-                    >
+    @if (session()->has('alert'))
+        @include('admin.partials.alert', [
+            'alert_color' => session('alert')[0],
+            'alert_title' => session('alert')[1],
+            'alert_message' => session('alert')[2]
+        ])
+    @endif
 
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-12 col-md-7">
-                                <p class="font-weight-bold text-center text-md-right mb-0">
-                                    Fecha del servicio
-                                </p>
-                            </div>
-
-                            <div class="col-12 col-md-5">
-                                <p class="text-center text-md-left font-weight-normal">
-                                    {{ $menu->service_at }}
-                                </p>
-                            </div>
-
-                            <div class="col-12 col-md-7">
-                                <p class="font-weight-bold text-center text-md-right mb-0">
-                                    Fecha de publicación
-                                </p>
-                            </div>
-
-                            <div class="col-12 col-md-5">
-                                <p class="text-center text-md-left font-weight-normal">
-                                    {{ $menu->publication_at }}
-                                </p>
-                            </div>
-
-                            <div class="col-12 col-md-7">
-                                <p class="font-weight-bold text-center text-md-right mb-0">
-                                    Cantidad disponible
-                                </p>
-                            </div>
-
-                            <div class="col-12 col-md-5">
-                                <p class="text-center text-md-left font-weight-normal">
-                                    {{ $menu->available_quantity }}
-                                </p>
-                            </div>
-
-                            <hr class="w-100 mt-0">
-
-                            <div class="col-6 text-center mb-3">
-                                <a
-                                    href="{{ route('admin.menus.show', $menu) }}"
-                                    class="text-info"
-                                >
-                                    <i class="fas fa-eye"></i> Ver más
-                                </a>
-                            </div>
-
-                            <div class="col-6 text-center mb-3">
-                                <a
-                                    href="{{ route('admin.menus.edit', $menu) }}"
-                                    class="text-warning"
-                                >
-                                    <i class="fas fa-edit"></i> Editar
-                                </a>
-                            </div>
-
-                            <div class="col-12 mb-0">
-                                <form method="POST" action="{{ route('admin.menus.destroy', $menu) }}" novalidate>
-                                    @csrf @method('DELETE')
-
-                                    <button
-                                        type="submit"
-                                        class="btn btn-outline-danger btn-block"
-                                    >
-                                        <i class="fas fa-trash"></i> Eliminar
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card card-outline card-primary">
+                <div class="card-body table-responsive">
+                    <table id="menus-table" class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="text-uppercase font-weight-bold">#</th>
+                                <th scope="col" class="text-uppercase font-weight-bold">Plato principal</th>
+                                <th scope="col" class="text-uppercase font-weight-bold">Fecha del servicio</th>
+                                <th scope="col" class="text-uppercase font-weight-bold">Fecha de publicación</th>
+                                <th scope="col" class="text-uppercase font-weight-bold">Cantidad disponible</th>
+                                <th scope="col" class="text-uppercase font-weight-bold text-md-center">Acciones</th>
+                            </tr>
+                        </thead>
+                    </table>
                 </div>
             </div>
-        @endforeach
-
-        <div class="col-12 d-flex justify-content-end mb-3">
-            {{ $menus->links('vendor.pagination.bootstrap-4') }}
         </div>
-    </main>
-@endsection
 
-@section('css')
-
+        @include('admin.menus.partials.modal')
+    </div>
 @endsection
 
 @section('js')
+    <script>
+        jQuery(document).ready(function() {
+            jQuery('#menus-table').DataTable({
+                serverSide: true,
+                ajax: "{{ route('admin.menus.index') }}",
+                processing: true,
+                responsive: true,
+                autoWidth: false,
+                columns: [
+                    {data: 'id', className: 'font-weight-bold'},
+                    {data: 'main.name', className: 'font-weight-light'},
+                    {data: 'service_at', className: 'font-weight-light text-md-center'},
+                    {data: 'publication_at', className: 'font-weight-light text-md-center'},
+                    {data: 'available_quantity', className: 'font-weight-light text-md-center'},
+                    {data: 'actions', className: 'text-md-center', orderable: false}
+                ],
+                order: [
+                    [0, 'asc']
+                ],
+                language: {
+                    url : '//cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json'
+                }
+            });
 
+            jQuery('#delete-menu').on('show.bs.modal', function (e) {
+                const modal = jQuery(this);
+                const button = jQuery(e.relatedTarget);
+
+                const id = button.data('id');
+                const starterName = button.data('starter-name');
+                const mainName = button.data('main-name');
+                const dessertName = button.data('dessert-name');
+                const serviceAt = button.data('service-at');
+                console.log(starterName, mainName, dessertName, serviceAt);
+
+                modal.find('.modal-title').text("Menú #" + id);
+                modal.find('.modal-body #starter-name').text(starterName);
+                modal.find('.modal-body #main-name').text(mainName);
+                modal.find('.modal-body #dessert-name').text(dessertName);
+                modal.find('.modal-body #service-at').text(serviceAt);
+                modal.find('.modal-footer #form-delete-menu').attr('action', `{{ env('APP_URL') }}/admin/menus/${id}`);
+            });
+        });
+    </script>
 @endsection
+

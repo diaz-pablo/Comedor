@@ -68,7 +68,7 @@
                     [0, 'desc']
                 ],
                 language: {
-                    'url' : '//cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json'
+                    url : '//cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json'
                 },
                 oSearch: {
                     sSearch: '{{ request()->has('search') ? request()->get('search') : '' }}'
