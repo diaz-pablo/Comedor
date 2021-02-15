@@ -32,9 +32,12 @@ class MenuController extends Controller
 
     public function create()
     {
-        $starters = Starter::all();
-        $mains = Main::all();
-        $desserts = Dessert::all();
+        return view('admin.menus.create', [
+            'menu' => new Menu,
+            'starters' => Starter::all(),
+            'mains' => Main::all(),
+            'desserts' => Dessert::all()
+        ]);
     }
 
     public function store(Request $request)
@@ -47,9 +50,16 @@ class MenuController extends Controller
         //
     }
 
-    public function edit($id)
+    public function edit(Menu $menu)
     {
-        //
+        $menu->load(['starter', 'main', 'dessert'])->get();
+
+        return view('admin.menus.create', [
+            'menu' => $menu,
+            'starters' => Starter::all(),
+            'mains' => Main::all(),
+            'desserts' => Dessert::all()
+        ]);
     }
 
     public function update(Request $request, $id)

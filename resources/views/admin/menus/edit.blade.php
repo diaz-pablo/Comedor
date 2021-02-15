@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Crear menú')
+@section('title', 'Editar datos del menú #' . $menu->id)
 
 @section('content_header')
     <div class="d-flex justify-content-between align-items-center">

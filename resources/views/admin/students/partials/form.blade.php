@@ -142,11 +142,13 @@
                 </div>
 
                 <div class="form-group row">
-                    <label class="col-12 col-form-label font-weight-light">Estado</label>
+                    <label class="col-12 col-form-label font-weight-light">
+                        Estado
+                    </label>
 
                     <div class="col-12">
                         <select name="status" class="custom-select font-weight-light @error('status') is-invalid @enderror">
-                            <option class="font-weight-light">
+                            <option class="font-weight-light" disabled selected>
                                 -- Elige un estado para el estudiante --
                             </option>
 
