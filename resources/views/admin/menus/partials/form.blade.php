@@ -1,10 +1,12 @@
 @section('plugins.DatePicker', true)
 @section('plugins.Select2', true)
+@section('plugins.Dropzone', true)
 
 <form
     method="POST"
     action="{{ $menu->id ? route('admin.menus.update', $menu) : route('admin.menus.store') }}"
     class="row"
+    enctype="multipart/form-data"
     novalidate
 >
     @csrf
@@ -44,6 +46,7 @@
                     <div class="col-12">
                         <select
                             id="starter_id"
+                            name="starter_id"
                             class="custom-select font-weight-light @error('starter_id') is-invalid @enderror"
                         >
                             <option class="font-weight-light" disabled selected>
@@ -73,6 +76,7 @@
                     <div class="col-12">
                         <select
                             id="main_id"
+                            name="main_id"
                             class="custom-select font-weight-light @error('main_id') is-invalid @enderror"
                         >
                             <option class="font-weight-light" disabled selected>
@@ -102,6 +106,7 @@
                     <div class="col-12">
                         <select
                             id="dessert_id"
+                            name="dessert_id"
                             class="custom-select font-weight-light @error('dessert_id') is-invalid @enderror"
                         >
                             <option class="font-weight-light" disabled selected>
@@ -189,7 +194,9 @@
                     </label>
 
                     <div class="col-12">
-                        Dropzone.js
+                        <div class="dropzone"></div>
+
+                        @include('admin.partials.validation', ['field_name' => 'image'])
                     </div>
                 </div>
             </div>
@@ -212,13 +219,17 @@
 
 @section('js')
     <script>
+        Dropzone.autoDiscover = false;
+
         jQuery(document).ready(function () {
             jQuery('#service_at').datepicker({
-                uiLibrary: 'bootstrap4'
+                uiLibrary: 'bootstrap4',
+                autoclose: true,
             });
 
             jQuery('#publication_at').datepicker({
-                uiLibrary: 'bootstrap4'
+                uiLibrary: 'bootstrap4',
+                autoclose: true,
             });
 
             jQuery('#starter_id').select2({
@@ -231,6 +242,22 @@
 
             jQuery('#dessert_id').select2({
                 tags: true
+            });
+
+            const dropzone = new Dropzone('.dropzone', {
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                url: '{{ route('admin.menus.store') }}',
+                //acceptedFiles: 'image/*',
+                //maxFilesize: 2,
+                paramName: 'image',
+                dictDefaultMessage: 'Suelta los archivos aquí o haz clic para subirlos.',
+            });
+
+            dropzone.on('error', function (file, res){
+                let message = res.errors.image[0];
+                jQuery('.dz-error-message:last > span').text(message);
             });
         });
     </script>

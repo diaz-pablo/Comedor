@@ -34,6 +34,11 @@ class Menu extends Model
         return $this->belongsTo(Dessert::class);
     }
 
+    public function images()
+    {
+        return $this->morphMany(Image::class, 'imageable');
+    }
+
     public function getServiceAtAttribute($serviceAt)
     {
         return Carbon::parse($serviceAt)->translatedFormat('d M Y');

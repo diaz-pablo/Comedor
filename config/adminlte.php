@@ -387,6 +387,21 @@ return [
                     'location' => 'https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css',
                 ],
             ],
+        ],
+        'Dropzone' => [
+            'active' => false,
+            'files' => [
+                [
+                    'type' => 'css',
+                    'asset' => false,
+                    'location' => 'https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.6/dropzone.min.css',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => false,
+                    'location' => 'https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.6/min/dropzone.min.js',
+                ]
+            ],
         ]
     ],
 

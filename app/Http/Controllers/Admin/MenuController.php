@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\StoreMenuRequest;
 use App\Models\Dessert;
 use App\Models\Main;
 use App\Models\Menu;
@@ -16,7 +17,7 @@ class MenuController extends Controller
     {
 
         if (request()->ajax()) {
-            $menus = Menu::where('service_at', '>=', now()->format('Y-m-d'))
+            $menus = Menu::where('service_at', '>=', now()->format('Y-m-d')) // probar con Carbon::now()
                 ->with(['starter', 'main', 'dessert'])
                 ->get();
 
@@ -42,7 +43,7 @@ class MenuController extends Controller
 
     public function store(Request $request)
     {
-        //
+        return $request->all();
     }
 
     public function show($id)
