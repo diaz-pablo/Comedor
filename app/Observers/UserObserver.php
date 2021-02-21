@@ -9,11 +9,6 @@ use Illuminate\Support\Str;
 
 class UserObserver
 {
-    public function created(User $user)
-    {
-
-    }
-
     public function creating(User $user)
     {
         if (! \App::runningInConsole()) {
@@ -26,7 +21,6 @@ class UserObserver
 
     public function updating(User $user)
     {
-
         if($user->isDirty('email') && ! \App::runningInConsole())  {
             $user->email_verified_at = null;
 
@@ -39,20 +33,5 @@ class UserObserver
 
             $user->notify(new SendNewPasswordToUpdatedUser($newPassword));
         }
-    }
-
-    public function deleted(User $user)
-    {
-        //
-    }
-
-    public function restored(User $user)
-    {
-        //
-    }
-
-    public function forceDeleted(User $user)
-    {
-        //
     }
 }

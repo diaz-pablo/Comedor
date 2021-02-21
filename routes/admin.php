@@ -8,5 +8,5 @@ use App\Http\Controllers\Admin\ImageController;
 
 Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('admin.dashboard');
 Route::resource('/students', StudentController::class)->names('admin.students');
-Route::resource('/menus', MenuController::class)->names('admin.menus');
+Route::resource('/menus', MenuController::class)->except(['create'])->names('admin.menus');
 Route::post('/menus/{menu}/images', [ImageController::class, 'store'])->name('admin.menus.images.store');

@@ -16,12 +16,12 @@ class CreateMenusTable extends Migration
         Schema::create('menus', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('starter_id');
-            $table->unsignedBigInteger('main_id');
-            $table->unsignedBigInteger('dessert_id');
+            $table->unsignedBigInteger('starter_id')->nullable();
+            $table->unsignedBigInteger('main_id')->nullable();
+            $table->unsignedBigInteger('dessert_id')->nullable();
             $table->date('service_at')->unique();
-            $table->date('publication_at');
-            $table->unsignedSmallInteger('available_quantity');
+            $table->date('publication_at')->nullable();
+            $table->unsignedSmallInteger('available_quantity')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');

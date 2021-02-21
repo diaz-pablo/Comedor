@@ -11,8 +11,19 @@ class Menu extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id', 'starter_id', 'main_id', 'dessert_id', 'service_at', 'publication_at', 'available_quantity'
+        'starter_id', 'main_id', 'dessert_id', 'service_at', 'publication_at', 'available_quantity'
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        self::creating(function ($table) {
+            if (! app()->runningInConsole()) {
+                $table->user_id = auth()->id();
+            }
+        });
+    }
 
     public function user()
     {
@@ -39,14 +50,14 @@ class Menu extends Model
         return $this->morphMany(Image::class, 'imageable');
     }
 
-    public function getServiceAtAttribute($serviceAt)
+    /*public function getServiceAtAttribute($serviceAt)
     {
         return Carbon::parse($serviceAt)->translatedFormat('d M Y');
-    }
+    }*/
 
-    public function getPublicationAtAttribute($publicationAt)
+    /*public function getPublicationAtAttribute($publicationAt)
     {
         return Carbon::parse($publicationAt)->translatedFormat('d M Y');
-    }
+    }*/
 
 }

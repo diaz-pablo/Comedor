@@ -8,6 +8,7 @@ use App\Models\Dessert;
 use App\Models\Main;
 use App\Models\Menu;
 use App\Models\Starter;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -15,35 +16,29 @@ class MenuController extends Controller
 {
     public function index()
     {
+        $datesDisabled = (Menu::all())->pluck('service_at');
 
         if (request()->ajax()) {
-            $menus = Menu::where('service_at', '>=', now()->format('Y-m-d')) // probar con Carbon::now()
-                ->with(['starter', 'main', 'dessert'])
+            $menus = Menu::with(['starter', 'main', 'dessert'])
                 ->get();
 
             return datatables()
                 ->of($menus)
+                ->addColumn('publication_at', 'admin.menus.partials.publication-at')
+                ->addColumn('available_quantity', 'admin.menus.partials.available-quantity')
                 ->addColumn('actions', 'admin.menus.partials.actions')
-                ->rawColumns(['actions'])
+                ->rawColumns(['publication_at', 'available_quantity', 'actions'])
                 ->toJson();
         }
 
-        return view('admin.menus.index');
+        return view('admin.menus.index', compact('datesDisabled'));
     }
 
-    public function create()
+    public function store(StoreMenuRequest $request)
     {
-        return view('admin.menus.create', [
-            'menu' => new Menu,
-            'starters' => Starter::all(),
-            'mains' => Main::all(),
-            'desserts' => Dessert::all()
-        ]);
-    }
+        $menu = Menu::create(['service_at' => $request->get('service_at')]);
 
-    public function store(Request $request)
-    {
-        return $request->all();
+        return redirect()->route('admin.menus.edit', compact('menu'));
     }
 
     public function show($id)
@@ -54,8 +49,8 @@ class MenuController extends Controller
     public function edit(Menu $menu)
     {
         $menu->load(['starter', 'main', 'dessert'])->get();
-
-        return view('admin.menus.create', [
+        //return $menu;
+        return view('admin.menus.edit', [
             'menu' => $menu,
             'starters' => Starter::all(),
             'mains' => Main::all(),
@@ -63,7 +58,7 @@ class MenuController extends Controller
         ]);
     }
 
-    public function update(Request $request, $id)
+    public function update(StoreMenuRequest $request, $id)
     {
         //
     }

@@ -149,7 +149,7 @@
                     <div class="col-12">
                         <select name="status" class="custom-select font-weight-light @error('status') is-invalid @enderror">
                             <option class="font-weight-light" disabled selected>
-                                -- Elige un estado para el estudiante --
+                                - Elige un estado para el estudiante -
                             </option>
 
                             <option

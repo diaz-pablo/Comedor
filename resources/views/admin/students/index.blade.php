@@ -42,55 +42,55 @@
                 </div>
             </div>
         </div>
-
-        @include('admin.students.partials.modal')
     </div>
+
+    @include('admin.students.partials.modal')
 @endsection
 
 @section('js')
     <script>
-        jQuery(document).ready(function() {
-            jQuery('#students-table').DataTable({
-                serverSide: true,
-                ajax: "{{ route('admin.students.index') }}",
-                processing: true,
-                responsive: true,
-                autoWidth: false,
-                columns: [
-                    {data: 'id', className: 'font-weight-bold'},
-                    {data: 'document_number', className: 'font-weight-light'},
-                    {data: 'user.surname', className: 'font-weight-light'},
-                    {data: 'user.name', className: 'font-weight-light'},
-                    {data: 'status', className: 'text-md-center'},
-                    {data: 'actions', className: 'text-md-center', orderable: false}
-                ],
-                order: [
-                    [0, 'desc']
-                ],
-                language: {
-                    url : '//cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json'
-                },
-                oSearch: {
-                    sSearch: '{{ request()->has('search') ? request()->get('search') : '' }}'
-                }
-            });
+        jQuery('#students-table').DataTable({
+            serverSide: true,
+            ajax: "{{ route('admin.students.index') }}",
+            processing: true,
+            responsive: true,
+            autoWidth: false,
+            columns: [
+                {data: 'id', className: 'font-weight-bold'},
+                {data: 'document_number', className: 'font-weight-light'},
+                {data: 'user.surname', className: 'font-weight-light'},
+                {data: 'user.name', className: 'font-weight-light'},
+                {data: 'status', className: 'text-md-center'},
+                {data: 'actions', className: 'text-md-center', orderable: false}
+            ],
+            order: [
+                [0, 'desc']
+            ],
+            language: {
+                url : '//cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json'
+            },
+            oSearch: {
+                sSearch: '{{ request()->has('search') ? request()->get('search') : '' }}'
+            }
+        });
+    </script>
 
-            jQuery('#delete-student').on('show.bs.modal', function (e) {
-                const modal = jQuery(this);
-                const button = jQuery(e.relatedTarget);
+    <script>
+        jQuery('#delete-student').on('show.bs.modal', function (e) {
+            const modal = jQuery(this);
+            const button = jQuery(e.relatedTarget);
 
-                const id = button.data('id');
-                const documentNumber = button.data('document-number');
-                const surname = button.data('surname');
-                const name = button.data('name');
-                const email = button.data('email');
+            const id = button.data('id');
+            const documentNumber = button.data('document-number');
+            const surname = button.data('surname');
+            const name = button.data('name');
+            const email = button.data('email');
 
-                modal.find('.modal-title').text("Estudiante #" + id);
-                modal.find('.modal-body #full-name').text(`${name}  ${surname}`);
-                modal.find('.modal-body #document-number').text(documentNumber);
-                modal.find('.modal-body #email').text(email);
-                modal.find('.modal-footer #form-delete-student').attr('action', `{{ env('APP_URL') }}/admin/students/${id}`);
-            });
+            modal.find('.modal-title').text("Estudiante #" + id);
+            modal.find('.modal-body #full-name').text(`${name}  ${surname}`);
+            modal.find('.modal-body #document-number').text(documentNumber);
+            modal.find('.modal-body #email').text(email);
+            modal.find('.modal-footer #form-delete-student').attr('action', `{{ env('APP_URL') }}/admin/students/${id}`);
         });
     </script>
 @endsection

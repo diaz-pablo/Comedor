@@ -16,7 +16,7 @@
 
             <div class="modal-body">
                 <p class="text-center font-weight-light text-secondary text-uppercase mb-3">¿Estás seguro de eliminar a?</p>
-                <p class="text-center text-uppercase font-weight-light mb-0">Menú</p>
+                <p id="menu" class="text-center text-uppercase font-weight-light mb-0"></p>
                 <p id="starter-name" class="text-center font-weight-light mb-0"></p>
                 <p id="main-name" class="text-center font-weight-light mb-0"></p>
                 <p id="dessert-name" class="text-center font-weight-light mb-3"></p>

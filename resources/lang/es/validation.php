@@ -187,5 +187,6 @@ return [
         'document_number'       => 'número de documento',
         'surname'               => 'apellido',
         'status'                => 'estado',
+        'service_at'            => 'fecha del servicio',
     ],
 ];

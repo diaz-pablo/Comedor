@@ -373,18 +373,18 @@ return [
             'files' => [
                 [
                     'type' => 'css',
-                    'asset' => false,
-                    'location' => 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css',
+                    'asset' => true,
+                    'location' => '/bootstrap-datepicker/css/bootstrap-datepicker3.min.css',
                 ],
                 [
                     'type' => 'js',
-                    'asset' => false,
-                    'location' => 'https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js',
+                    'asset' => true,
+                    'location' => '/bootstrap-datepicker/js/bootstrap-datepicker.min.js',
                 ],
                 [
-                    'type' => 'css',
-                    'asset' => false,
-                    'location' => 'https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css',
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => '/bootstrap-datepicker/js/bootstrap-datepicker.es.min.js',
                 ],
             ],
         ],

@@ -22,11 +22,10 @@
     data-toggle="modal"
     data-target="#delete-menu"
     data-id="{{ $id }}"
-    data-starter-name="{{ $starter['name'] }}"
-    data-main-name="{{ $main['name'] }}"
-    data-dessert-name="{{ $dessert['name'] }}"
+    data-starter-name="{{ $starter ? $starter['name'] : null }}"
+    data-main-name="{{ $main ? $main['name'] : null }}"
+    data-dessert-name="{{ $dessert ? $dessert['name'] : null }}"
     data-service-at="{{ $service_at }}"
 >
     Eliminar
 </button>
-

@@ -15,7 +15,7 @@ class MenuSeeder extends Seeder
      */
     public function run()
     {
-        $dates = CarbonPeriod::create('2021-01-01', '2021-12-31');
+        $dates = CarbonPeriod::create('2021-01-01', '2021-03-31');
 
         $dates->forEach(function ($date) {
             Menu::factory(1)->create([
@@ -23,7 +23,5 @@ class MenuSeeder extends Seeder
                 'publication_at' => $date->subDays(7)->toDateString()
             ]);
         });
-
-        //Menu::factory(250)->create();
     }
 }
