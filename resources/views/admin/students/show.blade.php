@@ -7,7 +7,7 @@
         <h1 class="text-uppercase">Datos del estudiante #{{ $student->id }}</h1>
 
         <a href="{{ route('admin.students.index') }}" class="btn btn-outline-secondary border">
-            <span class="text-uppercase font-weight-light">Regresar</span>
+            <span class="text-uppercase font-weight-light">Cancelar</span>
         </a>
     </div>
 @endsection

@@ -44,12 +44,12 @@
         </div>
     </div>
 
-    @include('admin.students.partials.modal')
+    @include('admin.students.partials.delete-modal')
 @endsection
 
 @section('js')
     <script>
-        jQuery('#students-table').DataTable({
+        const datatable = jQuery('#students-table').DataTable({
             serverSide: true,
             ajax: "{{ route('admin.students.index') }}",
             processing: true,
@@ -70,9 +70,13 @@
                 url : '//cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json'
             },
             oSearch: {
-                sSearch: '{{ request()->has('search') ? request()->get('search') : '' }}'
+                sSearch: window.location.hash.substring(1)
             }
         });
+
+        datatable.on('search.dt', function () {
+            window.location.hash = datatable.search();
+        } );
     </script>
 
     <script>

@@ -16,6 +16,7 @@
 
             <div class="modal-body">
                 <p class="text-center font-weight-light text-secondary text-uppercase mb-3">¿Estás seguro de eliminar a?</p>
+                <p class="text-center text-uppercase font-weight-light mb-0">Estudiante</p>
                 <p id="full-name" class="text-center font-weight-light mb-0"></p>
                 <p id="document-number" class="text-center font-weight-light mb-0"></p>
                 <p id="email" class="text-center font-weight-light mb-3"></p>
