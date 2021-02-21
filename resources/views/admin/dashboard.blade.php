@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'Panel')
 
 @section('content_header')
-    <h1 class="text-uppercase">Dashboard</h1>
+    <h1 class="text-uppercase">Panel</h1>
 @endsection
 
 @section('content')

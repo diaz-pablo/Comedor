@@ -224,7 +224,7 @@ return [
 
     'menu' => [
         [
-            'text'        => 'Dashboard',
+            'text'        => 'Panel',
             'route'       => 'admin.dashboard',
             'icon'        => 'fas fa-fw fa-tachometer-alt',
         ],
@@ -288,33 +288,53 @@ return [
             'files' => [
                 [
                     'type' => 'css',
-                    'asset' => false,
-                    'location' => 'https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.min.css',
+                    'asset' => true,
+                    'location' => '/assets/datatables/css/dataTables.bootstrap4.min.css',
                 ],
                 [
                     'type' => 'css',
-                    'asset' => false,
-                    'location' => 'https://cdn.datatables.net/responsive/2.2.7/css/responsive.bootstrap4.min.css',
+                    'asset' => true,
+                    'location' => '/assets/datatables/css/responsive.bootstrap4.min.css',
                 ],
                 [
                     'type' => 'js',
-                    'asset' => false,
-                    'location' => 'https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js',
+                    'asset' => true,
+                    'location' => '/assets/datatables/js/jquery.dataTables.min.js',
                 ],
                 [
                     'type' => 'js',
-                    'asset' => false,
-                    'location' => 'https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js',
+                    'asset' => true,
+                    'location' => '/assets/datatables/js/dataTables.bootstrap4.min.js',
                 ],
                 [
                     'type' => 'js',
-                    'asset' => false,
-                    'location' => 'https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js',
+                    'asset' => true,
+                    'location' => '/assets/datatables/js/dataTables.responsive.min.js',
                 ],
                 [
                     'type' => 'js',
-                    'asset' => false,
-                    'location' => 'https://cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap4.min.js',
+                    'asset' => true,
+                    'location' => '/assets/datatables/js/responsive.bootstrap4.min.js',
+                ],
+            ],
+        ],
+        'DatePicker' => [
+            'active' => false,
+            'files' => [
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => '/assets/bootstrap-datepicker/css/bootstrap-datepicker3.min.css',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => '/assets/bootstrap-datepicker/js/bootstrap-datepicker.min.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => '/assets/bootstrap-datepicker/js/bootstrap-datepicker.es.min.js',
                 ],
             ],
         ],
@@ -322,15 +342,30 @@ return [
             'active' => false,
             'files' => [
                 [
-                    'type' => 'js',
-                    'asset' => false,
-                    'location' => '//cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js',
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => '/assets/select-2/css/select-2.min.css',
                 ],
                 [
-                    'type' => 'css',
-                    'asset' => false,
-                    'location' => '//cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css',
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => '/assets/select-2/js/select-2.min.js',
                 ],
+            ],
+        ],
+        'Dropzone' => [
+            'active' => false,
+            'files' => [
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => '/assets/dropzone/css/dropzone.min.css',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => '/assets/dropzone/js/dropzone.min.js',
+                ]
             ],
         ],
         'Chartjs' => [
@@ -368,41 +403,6 @@ return [
                 ],
             ],
         ],
-        'DatePicker' => [
-            'active' => false,
-            'files' => [
-                [
-                    'type' => 'css',
-                    'asset' => true,
-                    'location' => '/bootstrap-datepicker/css/bootstrap-datepicker3.min.css',
-                ],
-                [
-                    'type' => 'js',
-                    'asset' => true,
-                    'location' => '/bootstrap-datepicker/js/bootstrap-datepicker.min.js',
-                ],
-                [
-                    'type' => 'js',
-                    'asset' => true,
-                    'location' => '/bootstrap-datepicker/js/bootstrap-datepicker.es.min.js',
-                ],
-            ],
-        ],
-        'Dropzone' => [
-            'active' => false,
-            'files' => [
-                [
-                    'type' => 'css',
-                    'asset' => false,
-                    'location' => 'https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.6/dropzone.min.css',
-                ],
-                [
-                    'type' => 'js',
-                    'asset' => false,
-                    'location' => 'https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.6/min/dropzone.min.js',
-                ]
-            ],
-        ]
     ],
 
     /*
