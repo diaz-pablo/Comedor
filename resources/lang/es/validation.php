@@ -193,5 +193,6 @@ return [
         'dessert_id'            => 'postre',
         'publication_at'        => 'fecha de publicación',
         'available_quantity'    => 'cantidad disponible',
+        'image'                 => 'imagen',
     ],
 ];

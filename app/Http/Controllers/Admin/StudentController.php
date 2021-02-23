@@ -45,7 +45,7 @@ class StudentController extends Controller
 
             $request->merge(['user_id' => $user->id]);
 
-            Student::create($request->only(['user_id', 'document_number', 'status']));
+            $user->student()->create($request->only(['user_id', 'document_number', 'status']));
 
             DB::commit();
         } catch (\Exception $exception) {
@@ -108,10 +108,7 @@ class StudentController extends Controller
         DB::beginTransaction();
         try {
             $student->delete();
-            $student->user->delete();
-            // TODO: Eliminar su imágen si es que no tiene la imágen por defecto.
-            // TODO: Seteearle en la DB la URL de la imágen por defecto.
-            // TODO: Hacer esto en el observer.
+
             DB::commit();
         } catch (\Exception $exception) {
             $alertColor = 'danger';

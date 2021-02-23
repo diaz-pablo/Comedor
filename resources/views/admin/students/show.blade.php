@@ -80,14 +80,14 @@
                             <p class="font-weight-light text-uppercase text-secondary text-center mb-0">
                                 Fecha de creación
                             </p>
-                            <p class="text-center font-weight-light">{{ $student->user->created_at }}</p>
+                            <p class="text-center font-weight-light">{{ $student->user->created_at->format('Y-m-d') }}</p>
                         </div>
 
                         <div class="col-12 col-md-6">
                             <p class="font-weight-light text-uppercase text-secondary text-center mb-0">
                                 Fecha de actualización
                             </p>
-                            <p class="text-center font-weight-light">{{ $student->user->updated_at }}</p>
+                            <p class="text-center font-weight-light">{{ $student->user->updated_at->format('Y-m-d') }}</p>
                         </div>
                     </div>
                 </div>

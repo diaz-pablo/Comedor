@@ -18,9 +18,6 @@ class DatabaseSeeder extends Seeder
         Storage::deleteDirectory('users');
         Storage::deleteDirectory('menus');
 
-        Storage::makeDirectory('users');
-        Storage::makeDirectory('menus');
-
         $this->call([
             RoleSeeder::class,
             UserSeeder::class,

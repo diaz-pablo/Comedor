@@ -52,15 +52,15 @@ class User extends Authenticatable
         return Storage::url($profilePhotoPath);
     }
 
-    public function getCreatedAtAttribute($createdAt)
+    /*public function getCreatedAtAttribute($createdAt)
     {
         return Carbon::parse($createdAt)->translatedFormat('d M Y');
-    }
+    }*/
 
-    public function getUpdatedAtAttribute($updatedAt)
+    /*public function getUpdatedAtAttribute($updatedAt)
     {
         return Carbon::parse($updatedAt)->translatedFormat('d M Y');
-    }
+    }*/
 
     public function setPasswordAttribute($password)
     {

@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Helper;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -27,11 +26,7 @@ class Menu extends Model
 
         self::deleting(function ($menu) {
             if (! app()->runningInConsole()) {
-                foreach ($menu->images as $image) {
-                    $image->delete();
-
-                    Helper::deleteFile($image->url);
-                }
+                $menu->images->each->delete();
             }
         });
     }
@@ -59,6 +54,26 @@ class Menu extends Model
     public function images()
     {
         return $this->morphMany(Image::class, 'imageable');
+    }
+
+    public function setPublicationAtAttribute($publication_at)
+    {
+        $this->attributes['publication_at'] = $publication_at ? Carbon::parse($publication_at) : null;
+    }
+
+    public function setStarterIdAttribute($starter)
+    {
+        $this->attributes['starter_id'] = Starter::find($starter) ? $starter : Starter::create(['name' => $starter])->id;
+    }
+
+    public function setMainIdAttribute($main)
+    {
+        $this->attributes['main_id'] = Main::find($main) ? $main : Main::create(['name' => $main])->id;
+    }
+
+    public function setDessertIdAttribute($dessert)
+    {
+        $this->attributes['dessert_id'] = Dessert::find($dessert) ? $dessert : Dessert::create(['name' => $dessert])->id;
     }
 
 }

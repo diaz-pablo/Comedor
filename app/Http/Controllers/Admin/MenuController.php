@@ -37,33 +37,24 @@ class MenuController extends Controller
 
     public function store(StoreMenuRequest $request)
     {
-        $alertColor = 'success';
-        $alertTitle = '¡Hurra! Todo salió bien, ';
-        $alertMessage = 'el menú han sido creado exitosamente.';
-
         DB::beginTransaction();
         try {
-            $menu = Menu::create(['service_at' => $request->get('service_at')]);
+            $menu = Menu::create($request->only('service_at'));
 
             DB::commit();
 
-            session()->flash('alert', [$alertColor, $alertTitle, $alertMessage]);
             return redirect()->route('admin.menus.edit', compact('menu'));
         } catch (\Exception $exception) {
-            $alertColor = 'danger';
-            $alertTitle = '¡Ups! Algo salió mal, ';
-            $alertMessage = $exception->getMessage();
-
             DB::rollBack();
 
-            session()->flash('alert', [$alertColor, $alertTitle, $alertMessage]);
+            session()->flash('alert', ['danger', '¡Ups! Algo salió mal, ', $exception->getMessage()]);
             return redirect()->route('admin.menus.index');
         }
     }
 
     public function show(Menu $menu)
     {
-        //return redirect()->route('admin.menus.show', compact('menu'));
+        return view('admin.menus.show', compact('menu'));
     }
 
     public function edit(Menu $menu)

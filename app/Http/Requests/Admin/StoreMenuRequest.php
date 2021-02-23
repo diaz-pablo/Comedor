@@ -39,9 +39,9 @@ class StoreMenuRequest extends FormRequest
             case 'PUT': {
                 return [
                     'service_at' => 'bail|required|date_format:Y-m-d|after_or_equal:' . Carbon::now()->format('Y-m-d') . '|unique:menus,service_at,' . $this->route('menu')->id,
-                    'starter_id' => 'bail|required|integer',
-                    'main_id' => 'bail|required|integer',
-                    'dessert_id' => 'bail|required|integer',
+                    'starter_id' => 'bail|required',
+                    'main_id' => 'bail|required',
+                    'dessert_id' => 'bail|required',
                     'publication_at' => 'bail|required|date_format:Y-m-d|after_or_equal:' . Carbon::now()->format('Y-m-d') . '|before_or_equal:service_at',
                     'available_quantity' => 'bail|required|integer|min:1',
                 ];
