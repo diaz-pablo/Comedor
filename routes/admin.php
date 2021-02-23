@@ -10,3 +10,4 @@ Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('admin
 Route::resource('/students', StudentController::class)->names('admin.students');
 Route::resource('/menus', MenuController::class)->except(['create'])->names('admin.menus');
 Route::post('/menus/{menu}/images', [ImageController::class, 'store'])->name('admin.menus.images.store');
+Route::delete('/images/{image}', [ImageController::class, 'destroy'])->name('admin.images.destroy');

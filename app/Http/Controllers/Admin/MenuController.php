@@ -16,10 +16,11 @@ class MenuController extends Controller
 {
     public function index()
     {
-        $datesDisabled = (Menu::all())->pluck('service_at');
+        $datesDisabled = Menu::all()->pluck('service_at');
 
         if (request()->ajax()) {
-            $menus = Menu::with(['starter', 'main', 'dessert'])
+            $menus = Menu::where('service_at', '>=', Carbon::now()->format('Y-m-d'))
+                ->with(['starter', 'main', 'dessert'])
                 ->get();
 
             return datatables()
@@ -48,19 +49,38 @@ class MenuController extends Controller
 
     public function edit(Menu $menu)
     {
-        $menu->load(['starter', 'main', 'dessert'])->get();
-        //return $menu;
+        $menu->load(['starter', 'main', 'dessert', 'images'])->get();
+
         return view('admin.menus.edit', [
             'menu' => $menu,
             'starters' => Starter::all(),
             'mains' => Main::all(),
-            'desserts' => Dessert::all()
+            'desserts' => Dessert::all(),
+            'datesDisabled' => Menu::all()->pluck('service_at')
         ]);
     }
 
-    public function update(StoreMenuRequest $request, $id)
+    public function update(StoreMenuRequest $request, Menu $menu)
     {
-        //
+        $alertColor = 'success';
+        $alertTitle = '¡Hurra! Todo salió bien, ';
+        $alertMessage = 'los datos del menú han sido actualizados exitosamente.';
+
+        DB::beginTransaction();
+        try {
+            $menu->update($request->all());
+
+            DB::commit();
+        } catch (\Exception $exception) {
+            $alertColor = 'danger';
+            $alertTitle = '¡Ups! Algo salió mal, ';
+            $alertMessage = $exception->getMessage();
+
+            DB::rollBack();
+        }
+
+        session()->flash('alert', [$alertColor, $alertTitle, $alertMessage]);
+        return redirect()->route('admin.menus.index');
     }
 
     public function destroy(Menu $menu)

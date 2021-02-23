@@ -53,13 +53,14 @@
 @endsection
 
 @section('css')
-    <style>
+    <style type="text/css">
         .datepicker {
             padding-left: .75rem;
             padding-right: .75rem;
         }
     </style>
 @endsection
+
 @section('js')
     <script>
         jQuery('#service_at').datepicker({

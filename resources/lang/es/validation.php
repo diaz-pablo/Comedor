@@ -188,5 +188,10 @@ return [
         'surname'               => 'apellido',
         'status'                => 'estado',
         'service_at'            => 'fecha del servicio',
+        'starter_id'            => 'plato de entrada',
+        'main_id'               => 'plato principal',
+        'dessert_id'            => 'postre',
+        'publication_at'        => 'fecha de publicación',
+        'available_quantity'    => 'cantidad disponible',
     ],
 ];

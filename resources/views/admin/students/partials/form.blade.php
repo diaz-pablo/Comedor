@@ -19,7 +19,7 @@
 
                 <div class="form-group row">
                     <label for="document_number" class="col-12 col-form-label font-weight-light">
-                        Número de documento
+                        Número de documento *
                     </label>
 
                     <div class="col-12">
@@ -39,7 +39,7 @@
 
                 <div class="form-group row">
                     <label for="surname" class="col-12 col-form-label font-weight-light">
-                        Apellido
+                        Apellido *
                     </label>
 
                     <div class="col-12">
@@ -58,7 +58,7 @@
 
                 <div class="form-group row">
                     <label for="name" class="col-12 col-form-label font-weight-light">
-                        Nombre
+                        Nombre *
                     </label>
 
                     <div class="col-12">
@@ -87,7 +87,7 @@
 
                 <div class="form-group row">
                     <label for="email" class="col-12 col-form-label font-weight-light">
-                        Correo electrónico
+                        Correo electrónico *
                     </label>
 
                     <div class="col-12">
@@ -143,7 +143,7 @@
 
                 <div class="form-group row">
                     <label class="col-12 col-form-label font-weight-light">
-                        Estado
+                        Estado *
                     </label>
 
                     <div class="col-12">

@@ -8,7 +8,10 @@
 
 @section('content_header')
     <div class="d-flex justify-content-between align-items-center">
-        <h1 class="text-uppercase">Editar datos del menú #{{ $menu->id }}</h1>
+        <div>
+            <h1 class="text-uppercase">Editar datos del menú #{{ $menu->id }}</h1>
+            <p class="font-sm font-weight-light mb-0">* Campos obligatorios.</p>
+        </div>
 
         <a href="{{ route('admin.menus.index') }}" class="btn btn-outline-secondary border">
             <span class="text-uppercase font-weight-light">Cancelar</span>
@@ -17,6 +20,38 @@
 @endsection
 
 @section('content')
+    @if (session()->has('alert'))
+        @include('admin.partials.alert', [
+            'alert_color' => session('alert')[0],
+            'alert_title' => session('alert')[1],
+            'alert_message' => session('alert')[2]
+        ])
+    @endif
+
+    @if ($menu->images->count())
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-outline card-warning">
+                    <div class="card-body row">
+                        @foreach($menu->images as $image)
+                            <div class="col-6 col-sm-3 col-md-2">
+                                <form method="POST" action="{{ route('admin.images.destroy', $image) }}">
+                                    @csrf @method('DELETE')
+
+                                    <button type="submit" class="btn btn-danger btn-sm position-absolute">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+
+                                    <img src="{{ url($image->url) }}" alt="" class="img-fluid mb-3">
+                                </form>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
+
     <form
         method="POST"
         action="{{ route('admin.menus.update', $menu) }}"
@@ -31,7 +66,7 @@
                 <div class="card-body">
                     <div class="form-group row">
                         <label for="service_at" class="col-12 col-form-label font-weight-light">
-                            Fecha del servicio
+                            Fecha del servicio *
                         </label>
 
                         <div class="col-12">
@@ -42,7 +77,7 @@
                                 class="form-control @error('service_at') is-invalid @enderror font-weight-light"
                                 placeholder="Ingresa la fecha del servicio del menú."
                                 value="{{ old('service_at', $menu->service_at) }}"
-                                autofocus
+                                autocomplete="off"
                             >
 
                             @include('admin.partials.validation', ['field_name' => 'service_at'])
@@ -51,7 +86,7 @@
 
                     <div class="form-group row">
                         <label for="starter_id" class="col-12 col-form-label font-weight-light">
-                            Plato de entrada
+                            Plato de entrada *
                         </label>
 
                         <div class="col-12">
@@ -68,7 +103,7 @@
                                     <option
                                         value="{{ $starter->id }}"
                                         class="font-weight-light"
-                                        {{ optional($menu->starter)->id === $starter->id || old('starter_id') === $starter->id ? "selected" : "" }}
+                                        {{ optional($menu->starter)->id === $starter->id || intval(old('starter_id')) === $starter->id ? "selected" : "" }}
                                     >
                                         {{ $starter->name }}
                                     </option>
@@ -81,7 +116,7 @@
 
                     <div class="form-group row">
                         <label for="main_id" class="col-12 col-form-label font-weight-light">
-                            Plato principal
+                            Plato principal *
                         </label>
 
                         <div class="col-12">
@@ -98,7 +133,7 @@
                                     <option
                                         value="{{ $main->id }}"
                                         class="font-weight-light"
-                                        {{ optional($menu->main)->id === $main->id || old('main_id') === $main->id ? "selected" : "" }}
+                                        {{ optional($menu->main)->id === $main->id || intval(old('main_id')) === $main->id ? "selected" : "" }}
                                     >
                                         {{ $main->name }}
                                     </option>
@@ -111,7 +146,7 @@
 
                     <div class="form-group row">
                         <label for="dessert_id" class="col-12 col-form-label font-weight-light">
-                            Postre
+                            Postre *
                         </label>
 
                         <div class="col-12">
@@ -128,7 +163,7 @@
                                     <option
                                         value="{{ $dessert->id }}"
                                         class="font-weight-light"
-                                        {{ optional($menu->dessert)->id === $dessert->id || old('dessert_id') === $dessert->id ? "selected" : "" }}
+                                        {{ optional($menu->dessert)->id === $dessert->id || intval(old('dessert_id')) === $dessert->id ? "selected" : "" }}
                                     >
                                         {{ $dessert->name }}
                                     </option>
@@ -147,7 +182,7 @@
                 <div class="card-body">
                     <div class="form-group row">
                         <label for="publication_at" class="col-12 col-form-label font-weight-light">
-                            Fecha de publicación
+                            Fecha de publicación *
                         </label>
 
                         <div class="col-12">
@@ -158,6 +193,7 @@
                                 class="form-control @error('publication_at') is-invalid @enderror font-weight-light"
                                 placeholder="Ingresa la fecha de publicación del menú."
                                 value="{{ old('publication_at', $menu->publication_at) }}"
+                                autocomplete="off"
                             >
 
                             @include('admin.partials.validation', ['field_name' => 'publication_at'])
@@ -181,7 +217,7 @@
 
                         <div class="col-8">
                             <label for="available_quantity" class="col-12 col-form-label font-weight-light">
-                                Cantidad disponible
+                                Cantidad disponible *
                             </label>
 
                             <div class="col-12">
@@ -200,7 +236,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="images" class="col-12 col-form-label font-weight-light">
+                        <label for="image" class="col-12 col-form-label font-weight-light">
                             Imágenes
                         </label>
 
@@ -229,19 +265,40 @@
     </form>
 @endsection
 
+@section('css')
+    <style type="text/css">
+        .datepicker {
+            padding-left: .75rem;
+            padding-right: .75rem;
+        }
+    </style>
+@endsection
+
 @section('js')
     <script>
         jQuery('#service_at').datepicker({
-            uiLibrary: 'bootstrap4',
+            language: 'es',
+            startDate: 'od',
+            format: 'yyyy-mm-dd',
+            todayHighlight: true,
+            daysOfWeekDisabled: '0,6',
+            datesDisabled: {!! $datesDisabled !!},
+            orientation: 'bottom right',
+            clearBtn: true,
             autoclose: true,
         });
     </script>
 
     <script>
         jQuery('#publication_at').datepicker({
-            uiLibrary: 'bootstrap4',
+            language: 'es',
+            startDate: 'now',
+            endDate: '{{ $menu->service_at }}',
+            format: 'yyyy-mm-dd',
+            todayHighlight: true,
+            orientation: 'bottom right',
+            clearBtn: true,
             autoclose: true,
-            defaultDate: null,
         });
     </script>
 
@@ -270,14 +327,14 @@
             headers: {
                 'X-CSRF-TOKEN': '{{ csrf_token() }}'
             },
-            url: '{{ route('admin.menus.store') }}',
-            //acceptedFiles: 'image/*',
-            //maxFilesize: 2,
+            url: '{{ route('admin.menus.images.store', $menu) }}',
+            acceptedFiles: 'image/*',
+            maxFilesize: 2,
             paramName: 'image',
             dictDefaultMessage: 'Suelta los archivos aquí o haz clic para subirlos.',
         });
 
-        dropzone.on('error', function (file, res){
+        dropzone.on('error', function (file, res) {
             let message = res.errors.image[0];
             jQuery('.dz-error-message:last > span').text(message);
         });

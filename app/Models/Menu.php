@@ -50,14 +50,4 @@ class Menu extends Model
         return $this->morphMany(Image::class, 'imageable');
     }
 
-    /*public function getServiceAtAttribute($serviceAt)
-    {
-        return Carbon::parse($serviceAt)->translatedFormat('d M Y');
-    }*/
-
-    /*public function getPublicationAtAttribute($publicationAt)
-    {
-        return Carbon::parse($publicationAt)->translatedFormat('d M Y');
-    }*/
-
 }

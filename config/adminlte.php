@@ -413,7 +413,7 @@ return [
     | Here we can enable the Livewire support.
     |
     | For detailed instructions you can look the livewire here:
-    | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/9.-Other-Configuration
+    | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/9.-Other-Configufalseration
     */
 
     'livewire' => false,
