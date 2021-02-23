@@ -54,6 +54,8 @@ class MenuController extends Controller
 
     public function show(Menu $menu)
     {
+        $menu->load(['user', 'starter', 'main', 'dessert', 'images'])->get();
+
         return view('admin.menus.show', compact('menu'));
     }
 
