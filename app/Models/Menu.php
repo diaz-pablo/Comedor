@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Helper;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -18,9 +19,19 @@ class Menu extends Model
     {
         parent::boot();
 
-        self::creating(function ($table) {
+        self::creating(function ($menu) {
             if (! app()->runningInConsole()) {
-                $table->user_id = auth()->id();
+                $menu->user_id = auth()->id();
+            }
+        });
+
+        self::deleting(function ($menu) {
+            if (! app()->runningInConsole()) {
+                foreach ($menu->images as $image) {
+                    $image->delete();
+
+                    Helper::deleteFile($image->url);
+                }
             }
         });
     }

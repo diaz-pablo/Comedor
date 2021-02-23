@@ -37,14 +37,33 @@ class MenuController extends Controller
 
     public function store(StoreMenuRequest $request)
     {
-        $menu = Menu::create(['service_at' => $request->get('service_at')]);
+        $alertColor = 'success';
+        $alertTitle = '¡Hurra! Todo salió bien, ';
+        $alertMessage = 'el menú han sido creado exitosamente.';
 
-        return redirect()->route('admin.menus.edit', compact('menu'));
+        DB::beginTransaction();
+        try {
+            $menu = Menu::create(['service_at' => $request->get('service_at')]);
+
+            DB::commit();
+
+            session()->flash('alert', [$alertColor, $alertTitle, $alertMessage]);
+            return redirect()->route('admin.menus.edit', compact('menu'));
+        } catch (\Exception $exception) {
+            $alertColor = 'danger';
+            $alertTitle = '¡Ups! Algo salió mal, ';
+            $alertMessage = $exception->getMessage();
+
+            DB::rollBack();
+
+            session()->flash('alert', [$alertColor, $alertTitle, $alertMessage]);
+            return redirect()->route('admin.menus.index');
+        }
     }
 
-    public function show($id)
+    public function show(Menu $menu)
     {
-        //
+        //return redirect()->route('admin.menus.show', compact('menu'));
     }
 
     public function edit(Menu $menu)
@@ -92,8 +111,7 @@ class MenuController extends Controller
         DB::beginTransaction();
         try {
             $menu->delete();
-            // TODO: Eliminar todas las imágenes.
-            // TODO: Hacer esto en un observer.
+
             DB::commit();
         } catch (\Exception $exception) {
             $alertColor = 'danger';

@@ -38,7 +38,7 @@
                                 <form method="POST" action="{{ route('admin.images.destroy', $image) }}">
                                     @csrf @method('DELETE')
 
-                                    <button type="submit" class="btn btn-danger btn-sm position-absolute">
+                                    <button type="submit" class="btn btn-danger btn-sm position-absolute m-1">
                                         <i class="fas fa-times"></i>
                                     </button>
 
@@ -236,14 +236,12 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="image" class="col-12 col-form-label font-weight-light">
+                        <label class="col-12 col-form-label font-weight-light">
                             Imágenes
                         </label>
 
                         <div class="col-12">
                             <div class="dropzone"></div>
-
-                            @include('admin.partials.validation', ['field_name' => 'image'])
                         </div>
                     </div>
                 </div>
