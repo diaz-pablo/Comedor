@@ -338,4 +338,12 @@
             jQuery('.dz-error-message:last > span').text(message);
         });
     </script>
+
+    <script>
+        lightbox.option({
+            'alwaysShowNavOnTouchDevices': true,
+            'albumLabel': 'Imagen %1 de %2',
+            'disableScrolling': true,
+        })
+    </script>
 @endsection
