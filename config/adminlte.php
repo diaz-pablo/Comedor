@@ -368,6 +368,21 @@ return [
                 ]
             ],
         ],
+        'Lightbox' => [
+            'active' => false,
+            'files' => [
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => '/assets/lightbox/css/lightbox.min.css',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => true,
+                    'location' => '/assets/lightbox/js/lightbox.min.js',
+                ]
+            ],
+        ],
         'Chartjs' => [
             'active' => false,
             'files' => [

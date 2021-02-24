@@ -5,6 +5,7 @@
 @section('plugins.DatePicker', true)
 @section('plugins.Select2', true)
 @section('plugins.Dropzone', true)
+@section('plugins.Lightbox', true)
 
 @section('content_header')
     <div class="d-flex justify-content-between align-items-center">
@@ -42,7 +43,7 @@
                                         <i class="fas fa-times"></i>
                                     </button>
 
-                                    <img src="{{ url($image->url) }}" alt="" class="img-fluid mb-3">
+                                    @include('admin.menus.partials.lightbox')
                                 </form>
                             </div>
                         @endforeach

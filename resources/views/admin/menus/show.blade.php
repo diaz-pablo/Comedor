@@ -23,7 +23,7 @@
                         <img src="{{ url($menu->images->first()->url) }}" alt="" class="img-fluid">
                     @else
                         <p class="text-lg text-center font-weight-light mb-0">
-                            El menú no posee imagenes para mostrar.
+                            El menú no posee imágenes para mostrar.
                         </p>
                     @endif
                 </div>
