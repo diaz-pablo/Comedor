@@ -47,6 +47,10 @@
                                 </form>
                             </div>
                         @endforeach
+
+                        <div class="col-12">
+                            <p class="font-weight-light text-sm mb-0">Clic en la imagen para ampliarla.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -344,6 +348,7 @@
             'alwaysShowNavOnTouchDevices': true,
             'albumLabel': 'Imagen %1 de %2',
             'disableScrolling': true,
+            'wrapAround': true,
         })
     </script>
 @endsection
